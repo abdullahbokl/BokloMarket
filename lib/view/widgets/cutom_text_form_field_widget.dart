@@ -6,13 +6,16 @@ class CustomTextFormField extends StatelessWidget {
   final String hint;
   final Function(String?)? onSave;
   final String? Function(String?)? validator;
+  final TextEditingController controller;
 
   const CustomTextFormField({
+
     super.key,
     this.text = '',
     this.hint = '',
-    required this.onSave,
-    required this.validator,
+    this.onSave,
+    this.validator,
+    required this.controller,
   });
 
   @override
@@ -26,6 +29,7 @@ class CustomTextFormField extends StatelessWidget {
             color: Colors.grey.shade900,
           ),
           TextFormField(
+            controller: controller,
             onSaved: onSave,
             validator: validator,
             decoration: InputDecoration(
