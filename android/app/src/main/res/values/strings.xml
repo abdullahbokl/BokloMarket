@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">boklo-mart</string>
+    <string name="facebook_app_id">6620753287951644</string>
+    <string name="fb_login_protocol_scheme">fb6620753287951644</string>
+    <string name="facebook_client_token">2592c1f96209ede63444858cba3bb4e4</string>
+</resources>

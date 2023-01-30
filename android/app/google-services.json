@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "329817780411",
+    "project_id": "boklo-mart",
+    "storage_bucket": "boklo-mart.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:329817780411:android:30b528b46c80009583b99e",
+        "android_client_info": {
+          "package_name": "com.mart.boklo.boklo_mart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "329817780411-oecesi6ul0g0ip8kc58vi6ptotatgkoq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mart.boklo.boklo_mart",
+            "certificate_hash": "95260318a220f2634bd893166a674aad754a90d0"
+          }
+        },
+        {
+          "client_id": "329817780411-qk9rf71o4dl4jo63vb24aqn8igl23fr1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGJbI2rm5Fo9_IsQneWbv3quBUhlBCHaw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "329817780411-5jelr4roeirhaqbdlgo9v1vvuvnferrh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
