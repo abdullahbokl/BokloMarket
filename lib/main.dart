@@ -1,8 +1,7 @@
-import 'package:boklo_mart/view/auth/login_page.dart';
-import 'package:boklo_mart/view/control_view.dart';
+import 'package:boklo_mart/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:boklo_mart/helper/binding.dart';
+import 'package:boklo_mart/helper/binding/binding.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
@@ -23,9 +22,11 @@ class BokloMart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       initialBinding: Binding(),
       title: 'Store App',
-      home: ControlView(),
+      getPages: routes,
+      initialRoute: kControlRoute,
     );
   }
 }

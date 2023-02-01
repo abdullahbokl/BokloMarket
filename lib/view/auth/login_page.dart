@@ -10,6 +10,7 @@ import 'package:get/get.dart';
 import 'package:boklo_mart/constants.dart';
 
 class LoginPage extends GetWidget<AuthViewModel> {
+
   LoginPage({Key? key}) : super(key: key);
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();

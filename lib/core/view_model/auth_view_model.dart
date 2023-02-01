@@ -11,18 +11,13 @@ class AuthViewModel extends GetxController {
   final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final FacebookAuth _facebookLogin = FacebookAuth.instance;
-  RxBool isSignedIn = false.obs;
+  var uid = ''.obs;
   RxBool isLoading = false.obs;
 
   @override
   Future<void> onInit() async {
     super.onInit();
-
-    signOut();
-    isSignedIn.value = false;
-    FirebaseAuth.instance.authStateChanges().listen((User? user) {
-      if (user != null) isSignedIn.value = true;
-    });
+    uid.value = _firebaseAuth.currentUser!.uid;
   }
 
   //   Create User With Email And Password
