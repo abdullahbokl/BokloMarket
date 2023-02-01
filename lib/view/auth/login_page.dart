@@ -37,7 +37,7 @@ class LoginPage extends GetWidget<AuthViewModel> {
                     const CustomText(text: 'Welcome', fontSize: 30),
                     InkWell(
                       onTap: () {
-                        Get.to(() => RegisterPage());
+                        Get.toNamed(kRegisterRoute);
                       },
                       child: const CustomText(
                           text: 'Sign Up', color: kPrimaryColor, fontSize: 18),

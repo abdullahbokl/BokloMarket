@@ -1,11 +1,9 @@
 import 'package:boklo_mart/core/view_model/auth_view_model.dart';
-import 'package:boklo_mart/view/widgets/custom_button_social_widget.dart';
 import 'package:boklo_mart/view/widgets/custom_button_widget.dart';
 import 'package:boklo_mart/view/widgets/custom_text_widget.dart';
 import 'package:boklo_mart/view/widgets/cutom_text_form_field_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:boklo_mart/constants.dart';
 
 class RegisterPage extends GetWidget<AuthViewModel> {
   RegisterPage({Key? key}) : super(key: key);

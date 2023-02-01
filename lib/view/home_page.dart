@@ -11,8 +11,17 @@ class HomePage extends GetWidget<AuthViewModel> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0,
+          actions: [
+            IconButton(onPressed: () {
+              controller.signOut();
+            }, icon: Icon(Icons.logout), color: Colors.black,),
+          ],
+        ),
         body: Padding(
-          padding: const EdgeInsets.only(top: 50, right: 10, left: 10, bottom: 20),
+          padding: const EdgeInsets.only(top: 20, right: 10, left: 10, bottom: 20),
           child: SingleChildScrollView(
             child: LimitedBox(
               child: Column(
@@ -67,9 +76,9 @@ class HomePage extends GetWidget<AuthViewModel> {
 
   Container _categoriesListView() {
     return Container(
-      height: 100,
+      height: 110,
       child: ListView.separated(
-        itemCount: 50,
+        itemCount: 10,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           return Column(

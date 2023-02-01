@@ -1,6 +1,9 @@
+import 'dart:html';
+
 import 'package:boklo_mart/core/services/add_user_data_to_firestore_service.dart';
 import 'package:boklo_mart/model/user_model.dart';
 import 'package:boklo_mart/view/auth/login_page.dart';
+import 'package:boklo_mart/view/control_view.dart';
 import 'package:boklo_mart/view/home_page.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get/get.dart';
@@ -27,17 +30,13 @@ class AuthViewModel extends GetxController {
       required String name}) async {
     isLoading.value = true;
     try {
-      UserCredential credential = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(
+      UserCredential credential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
         password: password,
-      )
-          .then((user) async {
-        // Add User Data To Firestore
-        return await addUserDataToFirestore(user: user, name: name);
-      });
-      // move to the Home Page
-      Get.offAll(HomePage());
+      );
+      await addUserDataToFirestore(user: credential, name: name);
+      Get.offAll(ControlView());
     } on FirebaseAuthException catch (e) {
       _onFirebaseAuthException(e);
     } catch (e) {
@@ -70,10 +69,8 @@ class AuthViewModel extends GetxController {
 
     try {
       await FirebaseAuth.instance
-          .signInWithEmailAndPassword(email: email, password: password)
-          .then((value) {
-        Get.offAll(HomePage());
-      });
+          .signInWithEmailAndPassword(email: email, password: password);
+      Get.offAll(ControlView());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         Get.snackbar(
@@ -95,14 +92,14 @@ class AuthViewModel extends GetxController {
         throw Exception("Google sign-in failed");
       }
       final googleSignInAuthentication = await googleUser.authentication;
-      final AuthCredential credential = GoogleAuthProvider.credential(
+      final AuthCredential authCredential = GoogleAuthProvider.credential(
         idToken: googleSignInAuthentication.idToken,
         accessToken: googleSignInAuthentication.accessToken,
       );
-      await _firebaseAuth.signInWithCredential(credential).then((user) {
-        return addUserDataToFirestore(user: user);
-      });
-      Get.offAll(HomePage());
+      UserCredential credential =
+          await _firebaseAuth.signInWithCredential(authCredential);
+      await addUserDataToFirestore(user: credential);
+      Get.offAll(ControlView());
     } catch (e) {
       Get.snackbar('Error', e.toString());
     }
@@ -116,13 +113,11 @@ class AuthViewModel extends GetxController {
     final LoginResult loginResult = await _facebookLogin.login();
     final OAuthCredential facebookAuthCredential =
         FacebookAuthProvider.credential(loginResult.accessToken!.token);
-    return FirebaseAuth.instance
-        .signInWithCredential(facebookAuthCredential)
-        .then((user) {
-      addUserDataToFirestore(user: user);
-      isLoading.value = false;
-      Get.offAll(HomePage());
-    });
+    UserCredential Credential = await FirebaseAuth.instance
+        .signInWithCredential(facebookAuthCredential);
+    await addUserDataToFirestore(user: Credential);
+    isLoading.value = false;
+    Get.offAll(ControlView());
   }
 
   //   Sign Out
@@ -139,7 +134,7 @@ class AuthViewModel extends GetxController {
       uid: user.user!.uid,
       email: user.user!.email!,
       name: name ?? user.user!.displayName!,
-      image: user.user!.photoURL!,
+      image: user.user!.photoURL,
     ));
   }
 }
