@@ -1,10 +1,7 @@
-import 'dart:html';
-
 import 'package:boklo_mart/core/services/add_user_data_to_firestore_service.dart';
 import 'package:boklo_mart/model/user_model.dart';
 import 'package:boklo_mart/view/auth/login_page.dart';
 import 'package:boklo_mart/view/control_view.dart';
-import 'package:boklo_mart/view/home_page.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -20,7 +17,7 @@ class AuthViewModel extends GetxController {
   @override
   Future<void> onInit() async {
     super.onInit();
-    uid.value = _firebaseAuth.currentUser!.uid;
+    uid.value = _firebaseAuth.currentUser?.uid ?? '';
   }
 
   //   Create User With Email And Password
@@ -80,6 +77,7 @@ class AuthViewModel extends GetxController {
             'Wrong password provided for that user.');
       }
     }
+    isLoading.value = false;
   }
 
   //   Sign In With Google
@@ -129,6 +127,7 @@ class AuthViewModel extends GetxController {
   }
 
   addUserDataToFirestore({required UserCredential user, String? name}) async {
+    uid.value = user.user!.uid;
     await AddUserDataToFirestore.addUserDataToFirestore(
         user: UserModel(
       uid: user.user!.uid,
