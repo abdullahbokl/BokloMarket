@@ -1,4 +1,5 @@
 import 'package:boklo_mart/core/view_model/auth_view_model.dart';
+import 'package:boklo_mart/view/auth/register_page.dart';
 import 'package:boklo_mart/view/widgets/custom_button_social_widget.dart';
 import 'package:boklo_mart/view/widgets/custom_button_widget.dart';
 import 'package:boklo_mart/view/widgets/custom_text_widget.dart';
@@ -31,10 +32,15 @@ class LoginPage extends GetWidget<AuthViewModel> {
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    CustomText(text: 'Welcome', fontSize: 30),
-                    CustomText(
-                        text: 'Sign Up', color: kPrimaryColor, fontSize: 18),
+                  children: [
+                    const CustomText(text: 'Welcome', fontSize: 30),
+                    InkWell(
+                      onTap: () {
+                        Get.to(() => RegisterPage());
+                      },
+                      child: const CustomText(
+                          text: 'Sign Up', color: kPrimaryColor, fontSize: 18),
+                    ),
                   ],
                 ),
                 const SizedBox(height: 10),

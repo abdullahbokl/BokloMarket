@@ -1,4 +1,5 @@
 import 'package:boklo_mart/view/auth/login_page.dart';
+import 'package:boklo_mart/view/control_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:boklo_mart/helper/binding.dart';
@@ -24,7 +25,7 @@ class BokloMart extends StatelessWidget {
     return GetMaterialApp(
       initialBinding: Binding(),
       title: 'Store App',
-      home: LoginPage(),
+      home: ControlView(),
     );
   }
 }
