@@ -13,6 +13,9 @@ const kPrimaryColor = Color.fromRGBO(0, 197, 105, 1);
 
 // collections names
 const String kUserCollection = 'users';
+const String kCategoriesCollection = 'categories';
+const String kProductsCollection = 'products';
+
 
 
   /** routes names **/

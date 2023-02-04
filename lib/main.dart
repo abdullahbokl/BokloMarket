@@ -23,6 +23,11 @@ class BokloMart extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialBinding: Binding(),
       title: 'Store App',
+      theme: ThemeData(
+        useMaterial3: true,
+        colorSchemeSeed: Colors.blueGrey,
+        brightness: Brightness.light,
+      ),
       getPages: routes,
       initialRoute: kControlRoute,
     );

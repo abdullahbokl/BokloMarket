@@ -9,7 +9,6 @@ class Binding extends Bindings {
   void dependencies() {
     Get.lazyPut(() => AuthViewModel(), fenix: true);
     Get.lazyPut(() => ControlViewModel(), fenix: true);
-
   }
 
 }
