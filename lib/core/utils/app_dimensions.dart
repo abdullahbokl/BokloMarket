@@ -31,8 +31,14 @@ class AppDimensions {
   static final double height7 = height / 121.0;
   static final double width7 = width / 58.8;
 
+  static final double height8 = height / 105.8;
+  static final double width8 = width / 51.9;
+
   static final double height10 = height / 86.7;
   static final double width10 = width / 41.1;
+
+  static final double height12 = height / 71.5;
+  static final double width12 = width / 33.8;
 
   static final double height15 = height / 57.8;
   static final double width15 = width / 27.4;

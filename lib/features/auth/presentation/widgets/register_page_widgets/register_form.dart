@@ -25,6 +25,7 @@ class RegisterForm extends StatelessWidget {
           children: [
             /// name
             CustomTextFormField(
+              prefixIcon: Icons.person_outline_outlined,
               controller: registerBloc.signUpNameController,
               hint: 'Name',
               validator: (value) {
@@ -35,6 +36,7 @@ class RegisterForm extends StatelessWidget {
 
             /// email
             CustomTextFormField(
+              prefixIcon: Icons.mail_outline_outlined,
               controller: registerBloc.signUpEmailController,
               hint: 'Email',
               validator: (value) {

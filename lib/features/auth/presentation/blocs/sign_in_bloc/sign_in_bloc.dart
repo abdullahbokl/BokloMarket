@@ -1,6 +1,6 @@
-import 'package:boklo_mart/core/utils/app_strings.dart';
 import 'package:boklo_mart/features/auth/domain/repositories/sign_in_repository.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:boklo_mart/core/utils/app_strings.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -68,22 +68,6 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     }
   }
 
-  // Future<bool> _checkIfEmailInUse() async {
-  //   try {
-  //     // Fetch sign-in methods for the email address
-  //     final list = await FirebaseAuth.instance
-  //         .fetchSignInMethodsForEmail(signInEmailController.text);
-  //     if (list.isNotEmpty) {
-  //       return true;
-  //     } else {
-  //       return false;
-  //     }
-  //   } catch (error) {
-  //     emit(SignInFailure(message: error.toString()));
-  //     return true;
-  //   }
-  // }
-
   /// resend email verification
   Future<void> _resendEmailVerification(
       ResendEmailVerification event, Emitter<SignInState> emit) async {
@@ -112,7 +96,6 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
   Future<void> _signInWithFacebook(
       SignInUsingFacebook event, Emitter<SignInState> emit) async {
     emit(SignInLoading());
-
     try {
       await signInRepository.signInWithFacebook();
       emit(SignInSuccess());

@@ -3,8 +3,8 @@ import 'package:boklo_mart/features/auth/presentation/views/reset_password_page.
 import 'package:boklo_mart/features/auth/presentation/views/register_page.dart';
 import 'package:boklo_mart/features/auth/presentation/views/sign_in_page.dart';
 import 'package:boklo_mart/features/home/views/pages/home_page.dart';
-import 'package:boklo_mart/features/splash/views/splash_screen.dart';
 import 'package:boklo_mart/config/routes/routes.dart';
+import 'package:boklo_mart/features/on_boarding/presentation/views/on_boarding_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +17,7 @@ class AppRouter {
     routes: <RouteBase>[
       GoRoute(
         path: Routes.kSplashRoute,
-        builder: (context, state) => const SplashScreen(),
+        builder: (context, state) => const OnBoardingScreen(),
       ),
 
       /// login page

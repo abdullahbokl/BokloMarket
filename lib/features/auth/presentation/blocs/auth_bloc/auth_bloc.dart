@@ -30,7 +30,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   Future<void> _logout(Logout event, Emitter<AuthState> emit) async {
     emit(AuthLoading());
     try {
-      authRepository.signOut();
+      await authRepository.signOut();
       emit(AuthSuccess());
     } catch (e) {
       emit(AuthFailure(message: e.toString()));

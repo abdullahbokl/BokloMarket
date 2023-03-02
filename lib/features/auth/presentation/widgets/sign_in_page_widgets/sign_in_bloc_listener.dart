@@ -17,7 +17,7 @@ class SignInListener extends StatelessWidget {
     return BlocListener<SignInBloc, SignInState>(
       listener: (context, state) {
         if (state is SignInSuccess) {
-          GoRouter.of(context).pushNamed(Routes.kHomeRoute);
+          GoRouter.of(context).goNamed(Routes.kHomeRoute);
         } else if (state is SignInFailure &&
             state.message == AppStrings.verifyEmail) {
           AppConstants.showAwesomeDialog(

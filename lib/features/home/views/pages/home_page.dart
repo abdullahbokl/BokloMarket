@@ -1,7 +1,11 @@
+import 'package:boklo_mart/config/routes/routes.dart';
 import 'package:boklo_mart/core/common/widgets/search_bar.dart';
 import 'package:boklo_mart/core/utils/app_colors.dart';
 import 'package:boklo_mart/core/common/widgets/custom_text_widget.dart';
+import 'package:boklo_mart/features/auth/presentation/blocs/auth_bloc/auth_bloc.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class HomePage extends StatelessWidget {
 
@@ -9,39 +13,58 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AuthBloc authBloc = AuthBloc.get(context);
+
     return Scaffold(
-              body: SingleChildScrollView(
-                child: Container(
-                  padding: const EdgeInsets.only(top: 100, left: 20, right: 20),
-                  child: Column(
-                    children: [
-                      SearchBar(),
-                      const SizedBox(height: 30),
-                      const CustomText(
-                        text: "Categories",
-                      ),
-                      const SizedBox(height: 30),
-                      // _listViewCategory(),
-                      const SizedBox(height: 30),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
-                          CustomText(
-                            text: "Best Selling",
-                            fontSize: 18,
-                          ),
-                          CustomText(
-                            text: "See all",
-                            fontSize: 16,
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 30),
-                      // _listViewProducts(),
-                    ],
-                  ),
-                ),
-              ),
+
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('welcome ${FirebaseAuth.instance.currentUser?.displayName ?? ''}}'),
+            TextButton(
+              onPressed: () async {
+                await FirebaseAuth.instance.signOut();
+                context.pushNamed(Routes.kSignInRoute);
+              },
+              child: Text('Sign Out'),
+            ),
+          ],
+        ),
+      ),
+
+              // body: SingleChildScrollView(
+              //   child: Container(
+              //     padding: const EdgeInsets.only(top: 100, left: 20, right: 20),
+              //     child: Column(
+              //       children: [
+              //         SearchBar(),
+              //         const SizedBox(height: 30),
+              //         const CustomText(
+              //           text: "Categories",
+              //         ),
+              //         const SizedBox(height: 30),
+              //         // _listViewCategory(),
+              //         const SizedBox(height: 30),
+              //         Row(
+              //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //           children: const [
+              //             CustomText(
+              //               text: "Best Selling",
+              //               fontSize: 18,
+              //             ),
+              //             CustomText(
+              //               text: "See all",
+              //               fontSize: 16,
+              //             ),
+              //           ],
+              //         ),
+              //         const SizedBox(height: 30),
+              //         // _listViewProducts(),
+              //       ],
+              //     ),
+              //   ),
+              // ),
 
 
     );
