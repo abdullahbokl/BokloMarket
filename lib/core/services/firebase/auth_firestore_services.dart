@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 /// CRUD operations
-class FirestoreAuthServices {
+class AuthFirestoreServices {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   /// create user
@@ -66,7 +66,7 @@ class FirestoreAuthServices {
   }
 
   /// get user by token id
-  static Future<String> getUserByTokenId(String tokenId) async {
+  static Future<String> getUserTokenId() async {
     try {
       final idToken = await FirebaseAuth.instance.currentUser?.getIdToken();
       return idToken!;

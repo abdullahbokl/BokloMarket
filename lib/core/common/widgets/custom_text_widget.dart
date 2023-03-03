@@ -6,6 +6,8 @@ class CustomText extends StatelessWidget {
   final Color color;
   final Alignment alignment;
   final FontWeight fontWeight;
+  final TextDecoration? decoration;
+
 
   const CustomText({
     super.key,
@@ -14,6 +16,7 @@ class CustomText extends StatelessWidget {
     this.color = Colors.black,
     this.alignment = Alignment.center,
     this.fontWeight = FontWeight.w600,
+    this.decoration = TextDecoration.none,
   });
 
   @override
@@ -26,6 +29,7 @@ class CustomText extends StatelessWidget {
           fontSize: fontSize,
           color: color,
           fontWeight: fontWeight,
+          decoration: decoration,
         ),
         textAlign: TextAlign.center,
       ),

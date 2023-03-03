@@ -21,6 +21,7 @@ Future<void> main() async {
   // await FirebaseAuth.instance.signOut();
 
   runApp(const MaterialApp(
+    debugShowCheckedModeBanner: false,
     home: BokloMarket(),
   ));
 }

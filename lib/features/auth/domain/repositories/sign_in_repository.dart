@@ -1,4 +1,4 @@
-import 'package:boklo_mart/core/services/firebase/firestore_auth_services.dart';
+import 'package:boklo_mart/core/services/firebase/auth_firestore_services.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:boklo_mart/core/common/models/user_model.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -49,7 +49,7 @@ class SignInRepository {
           name: _firebaseAuth.currentUser?.displayName ?? '',
           image: _firebaseAuth.currentUser?.photoURL ?? '',
         );
-        await FirestoreAuthServices().createUser(user: user);
+        await AuthFirestoreServices().createUser(user: user);
       }
     } catch (e) {
       throw Exception(e.toString());
@@ -76,7 +76,7 @@ class SignInRepository {
           name: _firebaseAuth.currentUser?.displayName ?? '',
           image: _firebaseAuth.currentUser?.photoURL ?? '',
         );
-        await FirestoreAuthServices().createUser(user: user);
+        await AuthFirestoreServices().createUser(user: user);
       }
     } catch (e) {
       throw Exception(e.toString());

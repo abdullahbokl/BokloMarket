@@ -1,5 +1,9 @@
 class AppStrings {
 
+  /// user data
+  static String userToken = '';
+
+
   /** firebase **/
   // collections names
   static const String kUserCollection = 'users';

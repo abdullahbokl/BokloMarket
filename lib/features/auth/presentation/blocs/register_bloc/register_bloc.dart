@@ -1,5 +1,5 @@
 import 'package:boklo_mart/features/auth/domain/repositories/register_repository.dart';
-import 'package:boklo_mart/core/services/firebase/firestore_auth_services.dart';
+import 'package:boklo_mart/core/services/firebase/auth_firestore_services.dart';
 import 'package:boklo_mart/core/common/models/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,7 +22,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
 
   /// services
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-  FirestoreAuthServices firestoreServices = FirestoreAuthServices();
+  AuthFirestoreServices firestoreServices = AuthFirestoreServices();
 
   /// repositories
   final RegisterRepository registerRepository = RegisterRepository();

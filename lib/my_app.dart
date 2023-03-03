@@ -25,8 +25,8 @@ class BokloMarket extends StatelessWidget {
             create: (context) => ShowHidePasswordCubit()),
       ],
       child: MaterialApp.router(
-        theme: AppTheme.appTheme(),
         debugShowCheckedModeBanner: false,
+        theme: AppTheme.appTheme(),
         title: 'Boklo Market',
         routerConfig: AppRouter.goRouter,
       ),
