@@ -1,13 +1,11 @@
 import 'package:boklo_mart/core/common/models/user_model.dart';
 import 'package:boklo_mart/core/utils/app_strings.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 /// CRUD operations
 class FirestoreAuthServices {
-  final FirebaseFirestore _firestore;
-
-  FirestoreAuthServices({FirebaseFirestore? firestore})
-      : _firestore = firestore ?? FirebaseFirestore.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   /// create user
   Future<void> createUser({required UserModel user}) async {
@@ -62,6 +60,16 @@ class FirestoreAuthServices {
       return userDocs.docs
           .map((doc) => UserModel.fromJson(doc.data()))
           .toList();
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+
+  /// get user by token id
+  static Future<String> getUserByTokenId(String tokenId) async {
+    try {
+      final idToken = await FirebaseAuth.instance.currentUser?.getIdToken();
+      return idToken!;
     } catch (e) {
       throw Exception(e.toString());
     }

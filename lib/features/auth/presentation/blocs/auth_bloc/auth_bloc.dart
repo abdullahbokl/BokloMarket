@@ -15,31 +15,20 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<AuthEvent>((event, emit) {});
 
     /// Log Out
-    on<Logout>(_logout);
+    on<Logout>(_signOut);
   }
 
   /// repositories
   final AuthRepository authRepository = AuthRepository();
 
-  /// variables
-  bool isRegisterPasswordHidden = true;
-  bool isRegisterConfirmPasswordHidden = true;
-  bool isSignInPasswordHidden = true;
-
-  /// logout
-  Future<void> _logout(Logout event, Emitter<AuthState> emit) async {
+  /// Sign out
+  Future<void> _signOut(Logout event, Emitter<AuthState> emit) async {
     emit(AuthLoading());
     try {
       await authRepository.signOut();
       emit(AuthSuccess());
     } catch (e) {
       emit(AuthFailure(message: e.toString()));
-      throw Exception(e);
     }
   }
-
-  /// todo : forget password
-// Future<void> forgetPassword(String email) async {
-//   await firebaseAuth.sendPasswordResetEmail(email: email);
-// }
 }

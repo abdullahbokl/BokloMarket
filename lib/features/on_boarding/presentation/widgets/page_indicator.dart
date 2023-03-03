@@ -1,5 +1,7 @@
-import 'package:boklo_mart/features/on_boarding/presentation/cubits/on_boarding_cubit.dart';
+import 'package:boklo_mart/core/utils/app_colors.dart';
+import 'package:boklo_mart/features/on_boarding/presentation/bloc/on_boarding_bloc.dart';
 import 'package:boklo_mart/core/utils/app_dimensions.dart';
+import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
@@ -8,39 +10,21 @@ class PageIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final OnBoardingCubit onBoardingCubit = OnBoardingCubit.get(context);
-    return BlocBuilder<OnBoardingCubit, OnBoardingState>(
+    final OnBoardingBloc onBoardingBloc = OnBoardingBloc.get(context);
+    return BlocBuilder<OnBoardingBloc, OnBoardingState>(
       builder: (context, state) {
-        return Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            for (int i = 0; i < onBoardingCubit.pages.length; i++)
-              IndicatorDots(
-                isActive: i == onBoardingCubit.currentIndex,
-              ),
-          ],
+        return DotsIndicator(
+          dotsCount: onBoardingBloc.pages.length,
+          position: onBoardingBloc.currentIndex.toDouble(),
+          decorator: DotsDecorator(
+            activeColor: AppColors.primaryColor1,
+            size: Size.square(AppDimensions.height10),
+            activeSize: Size(AppDimensions.width20, AppDimensions.height10),
+            activeShape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(AppDimensions.radius5)),
+          ),
         );
       },
-    );
-  }
-}
-
-/// Indicator dot template
-class IndicatorDots extends StatelessWidget {
-  const IndicatorDots({Key? key, required this.isActive}) : super(key: key);
-
-  final bool isActive;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: AppDimensions.width5),
-      width: isActive ? AppDimensions.width12 : AppDimensions.width8,
-      height: isActive ? AppDimensions.height12 : AppDimensions.height8,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: isActive ? Colors.blue : Colors.grey,
-      ),
     );
   }
 }

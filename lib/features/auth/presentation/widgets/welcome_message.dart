@@ -20,7 +20,7 @@ class WelcomeMessage extends StatelessWidget {
             CustomText(
               text: welcomeMessage,
               fontSize: AppDimensions.font14,
-              color: AppColors.hintColor,
+              color: AppColors.blackHintColor,
             ),
           ],
         ),

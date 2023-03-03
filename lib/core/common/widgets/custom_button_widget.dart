@@ -1,5 +1,4 @@
-import 'package:boklo_mart/core/common/widgets/big_text.dart';
-import 'package:boklo_mart/core/utils/app_colors.dart';
+import 'package:boklo_mart/core/common/widgets/custom_text_widget.dart';
 import 'package:boklo_mart/core/utils/app_dimensions.dart';
 import 'package:flutter/material.dart';
 
@@ -7,9 +6,11 @@ class CustomButton extends StatelessWidget {
   final String text;
   final VoidCallback onTap;
   final Color? color;
+  final Gradient? gradient;
   final double? size;
   final double? height;
   final double? width;
+  final Color textColor;
 
   const CustomButton({
     Key? key,
@@ -19,6 +20,8 @@ class CustomButton extends StatelessWidget {
     this.size,
     this.height,
     this.width,
+    this.gradient,
+    this.textColor = Colors.white
   }) : super(key: key);
 
   @override
@@ -37,12 +40,12 @@ class CustomButton extends StatelessWidget {
         decoration: BoxDecoration(
           color: color ?? Colors.blue,
           borderRadius: BorderRadius.circular(AppDimensions.radius5),
-          gradient: AppColors.secondaryGradient(),
+          gradient: gradient,
         ),
-        child: BigText(
+        child: CustomText(
           text: text,
-          color: Colors.white,
-          size: size ?? AppDimensions.font16,
+          color: textColor,
+          fontSize: size ?? AppDimensions.font16,
           fontWeight: FontWeight.w600,
         ),
       ),

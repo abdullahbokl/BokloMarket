@@ -1,5 +1,7 @@
 import 'package:boklo_mart/features/on_boarding/data/models/page_model.dart';
+import 'package:boklo_mart/core/common/widgets/custom_text_widget.dart';
 import 'package:boklo_mart/core/utils/app_dimensions.dart';
+import 'package:boklo_mart/core/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class PageTemplate extends StatelessWidget {
@@ -9,35 +11,34 @@ class PageTemplate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Image.asset(
-          page.image,
-          height: AppDimensions.height200,
-        ),
-        SizedBox(height: AppDimensions.height50),
-        Text(
-          page.title,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: AppDimensions.font24,
-            fontWeight: FontWeight.bold,
+    return Container(
+      decoration: BoxDecoration(gradient: AppColors.primaryGradient()),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Image.asset(
+            page.image,
+            height: AppDimensions.height200,
           ),
-        ),
-        SizedBox(height: AppDimensions.height20),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: AppDimensions.width20),
-          child: Text(
-            page.desc,
-            textAlign: TextAlign.center,
-            style: TextStyle(
+          SizedBox(height: AppDimensions.height50),
+          CustomText(
+            text: page.title,
+            color: Colors.white,
+            fontSize: AppDimensions.font24,
+            alignment: Alignment.center,
+          ),
+          SizedBox(height: AppDimensions.height20),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: AppDimensions.width20),
+            child: CustomText(
+              text: page.desc,
+              color: AppColors.greyHintColor,
               fontSize: AppDimensions.font16,
-              color: Colors.grey,
+              alignment: Alignment.center,
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

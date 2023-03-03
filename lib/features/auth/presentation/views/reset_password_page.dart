@@ -12,43 +12,40 @@ class ResetPasswordPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<ResetPasswordCubit>(
-      create: (context) => ResetPasswordCubit(),
-      child: ResetPasswordBlocListener(
-        child: SafeArea(
-          child: Stack(
-            children: [
-              Scaffold(
-                body: SingleChildScrollView(
-                  child: LimitedBox(
-                    maxHeight: AppDimensions.height,
-                    maxWidth: AppDimensions.width,
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: AppDimensions.width20,
-                          vertical: AppDimensions.height30),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          CustomBackButton(),
-                          Spacer(flex: 1),
-                          ResetPasswordForm(),
-                          Spacer(flex: 2),
-                        ],
-                      ),
+    return ResetPasswordBlocListener(
+      child: SafeArea(
+        child: Stack(
+          children: [
+            Scaffold(
+              body: SingleChildScrollView(
+                child: LimitedBox(
+                  maxHeight: AppDimensions.height,
+                  maxWidth: AppDimensions.width,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: AppDimensions.width20,
+                        vertical: AppDimensions.height30),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const [
+                        CustomBackButton(),
+                        Spacer(flex: 1),
+                        ResetPasswordForm(),
+                        Spacer(flex: 2),
+                      ],
                     ),
                   ),
                 ),
               ),
-              BlocBuilder<ResetPasswordCubit, ResetPasswordState>(
-                builder: (context, state) {
-                  return (state is ResetPasswordLoading)
-                      ? const LoadingIndicator()
-                      : const SizedBox.shrink();
-                },
-              ),
-            ],
-          ),
+            ),
+            BlocBuilder<ResetPasswordCubit, ResetPasswordState>(
+              builder: (context, state) {
+                return (state is ResetPasswordLoading)
+                    ? const LoadingIndicator()
+                    : const SizedBox.shrink();
+              },
+            ),
+          ],
         ),
       ),
     );

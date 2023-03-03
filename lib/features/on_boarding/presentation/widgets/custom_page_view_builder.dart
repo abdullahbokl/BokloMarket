@@ -1,4 +1,4 @@
-import 'package:boklo_mart/features/on_boarding/presentation/cubits/on_boarding_cubit.dart';
+import 'package:boklo_mart/features/on_boarding/presentation/bloc/on_boarding_bloc.dart';
 import 'package:boklo_mart/features/on_boarding/presentation/widgets/page_template.dart';
 import 'package:boklo_mart/core/utils/app_dimensions.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,18 +9,23 @@ class CustomPageViewBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final OnBoardingCubit onBoardingCubit = OnBoardingCubit.get(context);
+    final OnBoardingBloc onBoardingBloc = OnBoardingBloc.get(context);
     return SizedBox(
       height: AppDimensions.height * 0.6,
-      child: PageView.builder(
-        controller: onBoardingCubit.pageController,
-        itemCount: onBoardingCubit.pages.length,
-        // onPageChanged: (index) {
-        //   onBoardingCubit.changeScreen(index);
-        // },
-        itemBuilder: (context, index) {
-          onBoardingCubit.changeScreen(index);
-          return PageTemplate(page: onBoardingCubit.pages[index]);
+      child: BlocBuilder<OnBoardingBloc, OnBoardingState>(
+        builder: (context, state) {
+          return PageView(
+            controller: onBoardingBloc.pageController,
+            onPageChanged: (index) {
+              onBoardingBloc.add(OnBoardingPageChanging(index: index));
+            },
+            children: [
+              for (int i = 0; i < onBoardingBloc.pages.length; i++)
+                PageTemplate(
+                  page: onBoardingBloc.pages[i],
+                ),
+            ],
+          );
         },
       ),
     );

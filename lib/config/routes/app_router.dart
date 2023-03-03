@@ -1,63 +1,79 @@
-import 'dart:async';
+import 'package:boklo_mart/features/auth/presentation/blocs/register_bloc/register_bloc.dart';
+import 'package:boklo_mart/features/auth/presentation/blocs/sign_in_bloc/sign_in_bloc.dart';
+import 'package:boklo_mart/features/auth/presentation/cubits/reset_password_cubit/reset_password_cubit.dart';
+import 'package:boklo_mart/features/on_boarding/presentation/bloc/on_boarding_bloc.dart';
+import 'package:boklo_mart/features/on_boarding/presentation/views/on_boarding_screen.dart';
 import 'package:boklo_mart/features/auth/presentation/views/reset_password_page.dart';
 import 'package:boklo_mart/features/auth/presentation/views/register_page.dart';
 import 'package:boklo_mart/features/auth/presentation/views/sign_in_page.dart';
 import 'package:boklo_mart/features/home/views/pages/home_page.dart';
+import 'package:boklo_mart/config/routes/redirects.dart';
 import 'package:boklo_mart/config/routes/routes.dart';
-import 'package:boklo_mart/features/on_boarding/presentation/views/on_boarding_screen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:flutter/material.dart';
 
 /// GoRouter configuration
 class AppRouter {
   const AppRouter();
-  /// navigator key
+
   static final GoRouter goRouter = GoRouter(
+    initialLocation: Paths.kOnBoardingRoute,
     routes: <RouteBase>[
+
+      /// on boarding page
       GoRoute(
-        path: Routes.kSplashRoute,
-        builder: (context, state) => const OnBoardingScreen(),
+        path: Paths.kOnBoardingRoute,
+        name: Routes.kOnBoardingRoute,
+        builder: (context, state) =>
+            BlocProvider(
+              create: (context) => OnBoardingBloc(),
+              child: const OnBoardingScreen(),
+            ),
+        redirect: Redirects.redirectIfOnBoardingVisited,
       ),
 
       /// login page
       GoRoute(
-        path: Routes.kSignInRoute,
+        path: Paths.kSignInRoute,
         name: Routes.kSignInRoute,
-        redirect: _redirectIfLoggedIn,
-        builder: (context, state) => const SignInPage(),
+        redirect: Redirects.redirectIfLoggedIn,
+        builder: (context, state) =>
+            BlocProvider(
+              create: (context) => SignInBloc(),
+              child: const SignInPage(),
+            ),
         routes: [
+
           /// register page
           GoRoute(
-            path: Routes.kRegisterRoute,
+            path: Paths.kRegisterRoute,
             name: Routes.kRegisterRoute,
-            builder: (context, state) => const RegisterPage(),
+            builder: (context, state) =>
+                BlocProvider(
+                  create: (context) => RegisterBloc(),
+                  child: const RegisterPage(),
+                ),
           ),
 
           /// forget password page
           GoRoute(
-            path: Routes.kForgetPasswordRoute,
+            path: Paths.kForgetPasswordRoute,
             name: Routes.kForgetPasswordRoute,
-            builder: (context, state) => const ResetPasswordPage(),
+            builder: (context, state) =>
+                BlocProvider(
+                  create: (context) => ResetPasswordCubit(),
+                  child: const ResetPasswordPage(),
+                ),
           ),
         ],
       ),
 
       /// home page
       GoRoute(
-        path: Routes.kHomeRoute,
+        path: Paths.kHomeRoute,
         name: Routes.kHomeRoute,
         builder: (context, state) => HomePage(),
       ),
     ],
-    initialLocation: Routes.kSplashRoute,
   );
-
-  static FutureOr<String?> _redirectIfLoggedIn(BuildContext context, GoRouterState state) {
-    print(state.location);
-    if (state.location == Routes.kSignInRoute) {
-      return FirebaseAuth.instance.currentUser != null ? Routes.kHomeRoute : null;
-    }
-    return null;
-  }
 }

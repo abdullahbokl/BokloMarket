@@ -14,56 +14,53 @@ class SignInPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => SignInBloc(),
-      child: Stack(
-        children: [
-          SafeArea(
-            child: SignInListener(
-              child: Scaffold(
-                body: SingleChildScrollView(
-                  child: LimitedBox(
-                    maxHeight: AppDimensions.height,
-                    maxWidth: AppDimensions.width,
-                    child: Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: AppDimensions.width20),
-                      child: Column(
-                        children: const [
-                          Spacer(flex: 3),
+    return Stack(
+      children: [
+        SafeArea(
+          child: SignInListener(
+            child: Scaffold(
+              body: SingleChildScrollView(
+                child: LimitedBox(
+                  maxHeight: AppDimensions.height,
+                  maxWidth: AppDimensions.width,
+                  child: Padding(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: AppDimensions.width20),
+                    child: Column(
+                      children: const [
+                        Spacer(flex: 3),
 
-                          /// welcome message
-                          WelcomeMessage(welcomeMessage: 'Sign In to Continue'),
-                          Spacer(flex: 1),
+                        /// welcome message
+                        WelcomeMessage(welcomeMessage: 'Sign In to Continue'),
+                        Spacer(flex: 1),
 
-                          /// sign in form
-                          SignInForm(),
+                        /// sign in form
+                        SignInForm(),
 
-                          /// go to sign up page button
-                          GoToRegisterButton(),
-                          Spacer(flex: 2),
+                        /// go to sign up page button
+                        GoToRegisterButton(),
+                        Spacer(flex: 2),
 
-                          /// social login
-                          SocialSignIn(),
+                        /// social login
+                        SocialSignIn(),
 
-                          Spacer(flex: 3),
-                        ],
-                      ),
+                        Spacer(flex: 3),
+                      ],
                     ),
                   ),
                 ),
               ),
             ),
           ),
-          BlocBuilder<SignInBloc, SignInState>(
-            builder: (context, state) {
-              return (state is SignInLoading)
-                  ? const LoadingIndicator()
-                  : const SizedBox.shrink();
-            },
-          ),
-        ],
-      ),
+        ),
+        BlocBuilder<SignInBloc, SignInState>(
+          builder: (context, state) {
+            return (state is SignInLoading)
+                ? const LoadingIndicator()
+                : const SizedBox.shrink();
+          },
+        ),
+      ],
     );
   }
 

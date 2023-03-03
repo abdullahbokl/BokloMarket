@@ -13,53 +13,50 @@ class RegisterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => RegisterBloc(),
-      child: Stack(
-        children: [
-          RegisterBlocListener(
-            child: SafeArea(
-              child: Scaffold(
-                body: SingleChildScrollView(
-                  child: LimitedBox(
-                    maxHeight: AppDimensions.height,
-                    maxWidth: AppDimensions.width,
-                    child: Padding(
-                      padding: _padding(),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          /// back button
-                          CustomBackButton(),
-                          Spacer(flex: 1),
+    return Stack(
+      children: [
+        RegisterBlocListener(
+          child: SafeArea(
+            child: Scaffold(
+              body: SingleChildScrollView(
+                child: LimitedBox(
+                  maxHeight: AppDimensions.height,
+                  maxWidth: AppDimensions.width,
+                  child: Padding(
+                    padding: _padding(),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const [
+                        /// back button
+                        CustomBackButton(),
+                        Spacer(flex: 1),
 
-                          /// welcome message
-                          WelcomeMessage(
-                              welcomeMessage: 'Register to Continue'),
-                          Spacer(flex: 1),
+                        /// welcome message
+                        WelcomeMessage(
+                            welcomeMessage: 'Register to Continue'),
+                        Spacer(flex: 1),
 
-                          /// sign up form
-                          RegisterForm(),
-                          Spacer(flex: 2),
-                        ],
-                      ),
+                        /// sign up form
+                        RegisterForm(),
+                        Spacer(flex: 2),
+                      ],
                     ),
                   ),
                 ),
               ),
             ),
           ),
+        ),
 
-          /// loading indicator
-          BlocBuilder<RegisterBloc, RegisterState>(
-            builder: (context, state) {
-              return (state is RegisterLoading)
-                  ? const LoadingIndicator()
-                  : const SizedBox.shrink();
-            },
-          ),
-        ],
-      ),
+        /// loading indicator
+        BlocBuilder<RegisterBloc, RegisterState>(
+          builder: (context, state) {
+            return (state is RegisterLoading)
+                ? const LoadingIndicator()
+                : const SizedBox.shrink();
+          },
+        ),
+      ],
     );
   }
 
