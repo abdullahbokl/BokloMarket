@@ -17,7 +17,7 @@ class ProductImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomImage(
-      networkImageUrl: product.image,
+      networkImageUrl: product.coverImage,
       imgHeight: AppDimensions.height150,
       imgWidth: AppDimensions.width150,
       surroundingBGColor:

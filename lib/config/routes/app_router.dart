@@ -70,7 +70,8 @@ class AppRouter {
         builder: (context, state) => BlocProvider(
           create: (context) => HomeBloc()
             ..loadUserToken()
-            ..add(FetchProducts()),
+            ..add(FetchProducts())
+            ..add(SelectCategory(index: 0)),
           child: const HomePage(),
         ),
       ),

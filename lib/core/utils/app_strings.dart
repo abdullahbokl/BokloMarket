@@ -4,7 +4,7 @@ class AppStrings {
   static String userToken = '';
 
 
-  /** firebase **/
+  /// firebase
   // collections names
   static const String kUserCollection = 'users';
   static const String kCategoriesCollection = 'categories';
@@ -22,4 +22,17 @@ class AppStrings {
 
   /// Hive
   static const String kOnBoardingBox = 'onBoarding';
+
+
+  /// home page
+  static const List<String> categories = [
+    'All',
+    'Electronics',
+    'Fashion',
+    'Home & Living',
+    'Health & Beauty',
+    'Phones & Tablets',
+    'Groceries',
+  ];
+
 }

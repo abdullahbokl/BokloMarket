@@ -17,6 +17,14 @@ class HomeError extends HomeState {
   HomeError(this.message);
 }
 
+/// category selected
+
+class CategorySelectedLoading extends HomeState {}
+
+class CategorySelectedSuccess extends HomeState {}
+
+class CategorySelectedEmpty extends HomeState {}
+
 /// search products
 
 class SearchLoading extends HomeState {}

@@ -1,3 +1,6 @@
+import 'package:boklo_mart/features/home/presentation/widgets/categories_buttons_row/categories_buttons_row.dart';
+import 'package:boklo_mart/features/home/presentation/widgets/categories_buttons_row/items_grid_view.dart';
+import 'package:boklo_mart/features/home/presentation/widgets/random_items_slider.dart';
 import 'package:boklo_mart/features/home/presentation/blocs/home_bloc/home_bloc.dart';
 import 'package:boklo_mart/features/home/presentation/widgets/home_app_bar.dart';
 import 'package:boklo_mart/features/home/presentation/widgets/home_drawer.dart';
@@ -17,152 +20,31 @@ class HomePage extends StatelessWidget {
         body: Padding(
           padding: _padding(),
           child: Column(
-            children: const [
+            children: [
               /// custom app bar
-              HomeAppBar(),
-              // popular items slider
-              // const HomeCarouselSlider(),
-              // custom app bar
-              // home screen
-              // Expanded(child: HomeItems()),
+              const HomeAppBar(),
+              SizedBox(height: AppDimensions.height20),
+              /// body
+              Expanded(
+                child: SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  child: Column(
+                    children: [
+                      // random items slider
+                      const ImagesSlider(),
+                      SizedBox(height: AppDimensions.height20),
+                      const CategoriesButtonsRow(),
+                      SizedBox(height: AppDimensions.height20),
+                      const ItemsGridView(),
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
         ),
       ),
     );
-
-    //     Scaffold(
-    //     body: SingleChildScrollView(
-    //       child: Container(
-    //         padding: EdgeInsets.only(
-    //             top: AppAppDimensions.height30,
-    //             left: AppAppDimensions.width20,
-    //             right: AppAppDimensions.width20),
-    //         child: Column(
-    //           children: [
-    //             const SearchBar(),
-    //             SizedBox(height: AppAppDimensions.height30),
-    //             const CustomText(
-    //               text: "Categories",
-    //             ),
-    //             SizedBox(height: AppAppDimensions.height30),
-    //             _listViewCategory(),
-    //             SizedBox(height: AppAppDimensions.height30),
-    //             Row(
-    //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    //               children: [
-    //                 CustomText(
-    //                   text: "Best Selling",
-    //                   fontSize: AppAppDimensions.font18,
-    //                 ),
-    //                 CustomText(
-    //                   text: "See all",
-    //                   fontSize: AppAppDimensions.font16,
-    //                 ),
-    //               ],
-    //             ),
-    //             SizedBox(height: AppAppDimensions.height30),
-    //             // _listViewProducts(),
-    //           ],
-    //         ),
-    //       ),
-    //     ),
-    //   );
-    // }
-    //
-    // /// List View Category
-    // Widget _listViewCategory() {
-    //   return SizedBox(
-    //     height: AppAppDimensions.height120,
-    //     child: ListView.separated(
-    //       itemCount: 10,
-    //       scrollDirection: Axis.horizontal,
-    //       itemBuilder: (context, index) {
-    //         return Column(
-    //           children: [
-    //             Container(
-    //               decoration: BoxDecoration(
-    //                 borderRadius: BorderRadius.circular(AppAppDimensions.radius50),
-    //                 color: Colors.grey.shade100,
-    //               ),
-    //               height: 60,
-    //               width: 60,
-    //               child: Padding(
-    //                 padding: const EdgeInsets.all(8.0),
-    //                 child: Image.asset(AppImages.onBoarding1),
-    //               ),
-    //             ),
-    //             const SizedBox(height: 20),
-    //             CustomText(
-    //               text: "Category Name",
-    //             ),
-    //           ],
-    //         );
-    //       },
-    //       separatorBuilder: (context, index) => const SizedBox(height: 20),
-    //     ),
-    //   );
-    // }
-//
-// /// List View Products
-// Widget _listViewProducts() {
-//   return Container(
-//       height: 350,
-//       child: ListView.separated(
-//         itemCount: controller.productModel.length,
-//         scrollDirection: Axis.horizontal,
-//         itemBuilder: (context, index) {
-//           return GestureDetector(
-//             onTap: () {
-//               /// todo : Navigate to details page
-//             },
-//             child: Container(
-//               width: MediaQuery.of(context).size.width * .4,
-//               child: Column(
-//                 children: [
-//                   Container(
-//                     decoration: BoxDecoration(
-//                       borderRadius: BorderRadius.circular(50),
-//                       color: Colors.grey.shade100,
-//                     ),
-//                     child: SizedBox(
-//                         height: 220,
-//                         width: MediaQuery.of(context).size.width * .4,
-//                         child: Image.network(
-//                           controller.productModel[index].image,
-//                           fit: BoxFit.fill,
-//                         )),
-//                   ),
-//                   const SizedBox(height: 20),
-//                   CustomText(
-//                     text: controller.productModel[index].name,
-//                     alignment: Alignment.bottomLeft,
-//                   ),
-//                   const SizedBox(height: 10),
-//                   Expanded(
-//                     child: CustomText(
-//                       text: controller.productModel[index].description,
-//                       color: Colors.grey,
-//                       alignment: Alignment.bottomLeft,
-//                     ),
-//                   ),
-//                   const SizedBox(height: 20),
-//                   CustomText(
-//                     text: "${controller.productModel[index].price} \$",
-//                     color: AppColors.primaryColor1,
-//                     alignment: Alignment.bottomLeft,
-//                   ),
-//                 ],
-//               ),
-//             ),
-//           );
-//         },
-//         separatorBuilder: (context, index) => const SizedBox(
-//           width: 20,
-//         ),
-//       ),
-//   );
-// }
   }
 
   EdgeInsets _padding() {

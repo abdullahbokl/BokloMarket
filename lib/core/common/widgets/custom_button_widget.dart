@@ -11,18 +11,20 @@ class CustomButton extends StatelessWidget {
   final double? height;
   final double? width;
   final Color textColor;
+  final double? radius;
 
-  const CustomButton({
-    Key? key,
-    required this.text,
-    required this.onTap,
-    this.color,
-    this.size,
-    this.height,
-    this.width,
-    this.gradient,
-    this.textColor = Colors.white
-  }) : super(key: key);
+  const CustomButton(
+      {Key? key,
+      required this.text,
+      required this.onTap,
+      this.color,
+      this.size,
+      this.height,
+      this.width,
+      this.gradient,
+      this.textColor = Colors.white,
+      this.radius})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +41,7 @@ class CustomButton extends StatelessWidget {
         ),
         decoration: BoxDecoration(
           color: color ?? Colors.blue,
-          borderRadius: BorderRadius.circular(AppDimensions.radius5),
+          borderRadius: BorderRadius.circular(radius ?? AppDimensions.radius5),
           gradient: gradient,
         ),
         child: CustomText(

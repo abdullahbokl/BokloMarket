@@ -9,8 +9,8 @@ class PriceAndSaleWidget extends StatelessWidget {
     required this.sale,
   }) : super(key: key);
 
-  final String price;
-  final String? sale;
+  final double price;
+  final double? sale;
 
   @override
   Widget build(BuildContext context) {

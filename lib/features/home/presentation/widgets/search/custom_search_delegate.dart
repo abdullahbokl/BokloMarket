@@ -76,7 +76,7 @@ class CustomSearchDelegate extends SearchDelegate {
             return ListView.builder(
               itemCount: homeBloc.filterdProducts.length,
               itemBuilder: (context, index) {
-                return SearchCard(
+                return ListCard(
                   product: homeBloc.filterdProducts[index],
                   index: index,
                 );
@@ -86,7 +86,7 @@ class CustomSearchDelegate extends SearchDelegate {
             // check if the state is empty
           if (state is SearchEmpty) {
             return const Center(
-              child: CustomText(text: 'Search products'),
+              child: CustomText(text: 'No results found'),
             );
           } else {
             return const Center(
@@ -103,4 +103,7 @@ class CustomSearchDelegate extends SearchDelegate {
   Widget buildSuggestions(BuildContext context) {
     return const SizedBox.shrink();
   }
+
+
+
 }

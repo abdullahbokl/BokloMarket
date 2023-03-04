@@ -5,8 +5,8 @@ import 'package:boklo_mart/core/common/models/product_model.dart';
 import 'package:boklo_mart/core/utils/app_dimensions.dart';
 import 'package:flutter/material.dart';
 
-class SearchCard extends StatelessWidget {
-  const SearchCard({
+class ListCard extends StatelessWidget {
+  const ListCard({
     Key? key,
     required this.product,
     required this.index,

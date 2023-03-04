@@ -10,20 +10,19 @@ class HomeDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: AppDimensions.width / 1.15,
-      height: AppDimensions.height / 1.15,
+      width: AppDimensions.width / 1.3,
+      height: AppDimensions.height / 1.3,
       child: Drawer(
         backgroundColor: Colors.white.withOpacity(0),
         child: Container(
           decoration: BoxDecoration(
             gradient: AppColors.primaryGradient(),
-            // color: AppColors.primaryColor1,
             borderRadius: BorderRadius.circular(AppDimensions.radius10),
           ),
           child: ListView(
             // padding: EdgeInsets.zero,
             children: [
-              SizedBox(height: AppDimensions.height20),
+              SizedBox(height: AppDimensions.height30),
               // logo
               Container(
                 width: AppDimensions.width128,
@@ -35,21 +34,20 @@ class HomeDrawer extends StatelessWidget {
                   AppImages.logo,
                 ),
               ),
-              SizedBox(height: AppDimensions.height30),
-              ListTile(
-                onTap: () {
-                  /// todo : go to 'sell Buy' screen
-                },
-                leading:
-                    const Icon(Icons.menu_open_rounded, color: Colors.white),
-                title: const CustomText(text: 'Main Menu', color: Colors.white),
-              ),
+              SizedBox(height: AppDimensions.height50),
               ListTile(
                 onTap: () {
                   /// todo : goto home screen
                 },
-                leading: Icon(Icons.home, color: Colors.white),
+                leading: const Icon(Icons.home, color: Colors.white),
                 title: const CustomText(text: 'Home', color: Colors.white),
+              ),
+              ListTile(
+                onTap: () {
+                  /// todo : goto favorites screen
+                },
+                leading: const Icon(Icons.favorite, color: Colors.white),
+                title: const CustomText(text: 'FAVORITES', color: Colors.white),
               ),
               ListTile(
                 onTap: () {
@@ -58,13 +56,6 @@ class HomeDrawer extends StatelessWidget {
                 leading: const Icon(Icons.account_circle_rounded,
                     color: Colors.white),
                 title: const CustomText(text: 'Profile', color: Colors.white),
-              ),
-              ListTile(
-                onTap: () {
-                  /// todo : goto favorites screen
-                },
-                leading: const Icon(Icons.favorite, color: Colors.white),
-                title: const CustomText(text: 'FAVORITES', color: Colors.white),
               ),
               ListTile(
                 onTap: () {
