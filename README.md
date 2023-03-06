@@ -1,16 +1,9 @@
-# boklo_mart
+E-Commerce App (In-Progress) built with ( modular architecture / BLoC / GoRouter / Firebase / Hive.
 
-A new Flutter project.
+Features:
 
-## Getting Started
+On-Boarding: https://drive.google.com/file/d/1kgnrmbFnHSzAswai8GCarlGq6lFQjqf7/view?usp=sharing .
 
-This project is a starting point for a Flutter application.
+Authentication:.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Register using email and password Sign in using email and password Sign in with Google Sign in with Facebook Input validation: https://drive.google.com/file/d/1XWM6DDZ41jMlPHbfypmLYy8U8JmepIxc/view?usp=sharing
