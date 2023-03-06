@@ -99,6 +99,17 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         AppStrings.categories[5],
       ],
     ),
+    ProductModel(
+      name: 'ssssssitem6ssssssitem6',
+      coverImage: '',
+      description: 'sssssssadsadsadasdsssssssadsadsadasdsssssssadsadsadasd',
+      sale: 45,
+      price: 5454,
+      categories: [
+        AppStrings.categories[5],
+      ],
+    ),
+
   ];
 
   List<ProductModel> get allProducts => _allProducts;

@@ -30,7 +30,7 @@ class CategoriesButtonsRow extends StatelessWidget {
                 textColor: homeBloc.selectedCategoryIndex == index
                     ? Colors.white
                     : Colors.black,
-                radius: AppDimensions.radius50,
+                radius: BorderRadius.circular(AppDimensions.radius50),
                 width: AppDimensions.width100,
                 text: AppStrings.categories[index],
                 onTap: () {

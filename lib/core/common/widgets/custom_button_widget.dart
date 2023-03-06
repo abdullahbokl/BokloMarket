@@ -11,7 +11,7 @@ class CustomButton extends StatelessWidget {
   final double? height;
   final double? width;
   final Color textColor;
-  final double? radius;
+  final BorderRadiusGeometry? radius;
 
   const CustomButton(
       {Key? key,
@@ -41,7 +41,7 @@ class CustomButton extends StatelessWidget {
         ),
         decoration: BoxDecoration(
           color: color ?? Colors.blue,
-          borderRadius: BorderRadius.circular(radius ?? AppDimensions.radius5),
+          borderRadius: radius ?? BorderRadius.circular(AppDimensions.radius5),
           gradient: gradient,
         ),
         child: CustomText(

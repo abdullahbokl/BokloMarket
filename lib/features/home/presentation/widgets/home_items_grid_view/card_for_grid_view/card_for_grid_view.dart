@@ -1,9 +1,10 @@
-import 'package:boklo_mart/features/home/presentation/widgets/categories_buttons_row/home_grid_view_card/add_to_favourite_button.dart';
-import 'package:boklo_mart/features/home/presentation/widgets/categories_buttons_row/home_grid_view_card/card_decoration.dart';
-import 'package:boklo_mart/features/home/presentation/widgets/categories_buttons_row/home_grid_view_card/card_body.dart';
+import 'package:boklo_mart/features/home/presentation/widgets/home_items_grid_view/card_for_grid_view/card_decoration.dart';
+import 'package:boklo_mart/features/home/presentation/widgets/home_items_grid_view/card_for_grid_view/card_body.dart';
 import 'package:boklo_mart/core/common/models/product_model.dart';
 import 'package:boklo_mart/core/utils/app_dimensions.dart';
 import 'package:flutter/material.dart';
+
+import 'add_to_favourite_button.dart';
 
 class HomeGridViewCard extends StatelessWidget {
   const HomeGridViewCard({Key? key, required this.product, required this.index})
@@ -36,8 +37,9 @@ class HomeGridViewCard extends StatelessWidget {
       color: Colors.white,
       borderRadius: BorderRadius.circular(AppDimensions.radius5),
       boxShadow: HomeGridViewCardDecoration()
-                  .cardColors(index: index, isShadow: true) != null ?
-      [
+                  .cardColors(index: index, isShadow: true) !=
+              null
+          ? [
               BoxShadow(
                 // blurStyle: ,
                 color: HomeGridViewCardDecoration()

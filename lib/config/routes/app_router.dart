@@ -1,13 +1,17 @@
+import 'package:boklo_mart/features/bottom_navigation_bar/cubits/bottom_nav_bar_cubit/bottom_nav_bar_cubit.dart';
 import 'package:boklo_mart/features/auth/presentation/cubits/reset_password_cubit/reset_password_cubit.dart';
+import 'package:boklo_mart/features/bottom_navigation_bar/presentation/views/bottom_nav_bar_screen.dart';
 import 'package:boklo_mart/features/auth/presentation/blocs/register_bloc/register_bloc.dart';
 import 'package:boklo_mart/features/auth/presentation/blocs/sign_in_bloc/sign_in_bloc.dart';
-import 'package:boklo_mart/features/home/presentation/blocs/home_bloc/home_bloc.dart';
 import 'package:boklo_mart/features/on_boarding/presentation/views/on_boarding_screen.dart';
 import 'package:boklo_mart/features/on_boarding/presentation/bloc/on_boarding_bloc.dart';
 import 'package:boklo_mart/features/auth/presentation/views/reset_password_page.dart';
+import 'package:boklo_mart/features/auth/presentation/blocs/auth_bloc/auth_bloc.dart';
+import 'package:boklo_mart/features/home/presentation/blocs/home_bloc/home_bloc.dart';
+import 'package:boklo_mart/features/profile/presentation/views/profile_screen.dart';
 import 'package:boklo_mart/features/auth/presentation/views/register_page.dart';
 import 'package:boklo_mart/features/auth/presentation/views/sign_in_page.dart';
-import 'package:boklo_mart/features/home/presentation/views/home_page.dart';
+import 'package:boklo_mart/features/home/presentation/views/home_screen.dart';
 import 'package:boklo_mart/config/routes/redirects.dart';
 import 'package:boklo_mart/config/routes/routes.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -63,18 +67,62 @@ class AppRouter {
         ],
       ),
 
-      /// home page
+      /// bottom navigation bar
       GoRoute(
-        path: Paths.kHomeRoute,
-        name: Routes.kHomeRoute,
-        builder: (context, state) => BlocProvider(
-          create: (context) => HomeBloc()
-            ..loadUserToken()
-            ..add(FetchProducts())
-            ..add(SelectCategory(index: 0)),
-          child: const HomePage(),
+        path: Paths.kBottomNavBarRoute,
+        name: Routes.kBottomNavBarRoute,
+        builder: (context, state) => MultiBlocProvider(
+          providers: [
+            BlocProvider(create: (context) => BottomNavBarCubit()),
+            BlocProvider(create: (context) => AuthBloc()),
+            BlocProvider(
+              create: (context) => HomeBloc()
+                ..loadUserToken()
+                ..add(FetchProducts())
+                ..add(SelectCategory(index: 0)),
+            ),
+          ],
+          child: const BottomNavBarScreen(),
         ),
       ),
+
+      /// bottom navigation screen
+      ShellRoute(
+        builder: (context, state, child) => BottomNavBarScreen(),
+        routes: [
+          /// home screen
+          GoRoute(
+            path: Paths.kHomeRoute,
+            name: Routes.kHomeRoute,
+            builder: (context, state) => const HomeScreen(),
+          ),
+
+          /// profile screen
+          GoRoute(
+            path: Paths.kProfileRoute,
+            name: Routes.kProfileRoute,
+            builder: (context, state) => const ProfileScreen(),
+          ),
+        ],
+      ),
+
+      /// home page
+      // GoRoute(
+      //   path: Paths.kHomeRoute,
+      //   name: Routes.kHomeRoute,
+      //   builder: (context, state) => MultiBlocProvider(
+      //     providers: [
+      //       BlocProvider(create: (context) => AuthBloc()),
+      //       BlocProvider(
+      //         create: (context) => HomeBloc()
+      //           ..loadUserToken()
+      //           ..add(FetchProducts())
+      //           ..add(SelectCategory(index: 0)),
+      //       ),
+      //     ],
+      //     child: const HomePage(),
+      //   ),
+      // ),
     ],
   );
 }

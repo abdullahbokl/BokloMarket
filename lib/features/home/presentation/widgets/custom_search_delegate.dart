@@ -1,4 +1,4 @@
-import 'package:boklo_mart/features/home/presentation/widgets/search/search_card.dart';
+import 'package:boklo_mart/features/home/presentation/widgets/custom_list_view/list_card.dart';
 import 'package:boklo_mart/features/home/presentation/blocs/home_bloc/home_bloc.dart';
 import 'package:boklo_mart/core/common/widgets/custom_text_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

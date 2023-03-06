@@ -1,6 +1,6 @@
-import 'package:boklo_mart/features/home/presentation/widgets/search/item_name_and_description.dart';
-import 'package:boklo_mart/features/home/presentation/widgets/search/price_and_sale.dart';
-import 'package:boklo_mart/features/home/presentation/widgets/search/product_image.dart';
+import 'package:boklo_mart/features/home/presentation/widgets/custom_list_view/item_name_and_description.dart';
+import 'package:boklo_mart/features/home/presentation/widgets/custom_list_view/price_and_sale.dart';
+import 'package:boklo_mart/features/home/presentation/widgets/custom_list_view/product_image.dart';
 import 'package:boklo_mart/core/common/models/product_model.dart';
 import 'package:boklo_mart/core/utils/app_dimensions.dart';
 import 'package:flutter/material.dart';

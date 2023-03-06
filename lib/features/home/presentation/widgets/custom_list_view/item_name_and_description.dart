@@ -21,6 +21,7 @@ class ItemNameAndDescription extends StatelessWidget {
           fontSize: AppDimensions.font18,
           fontWeight: FontWeight.bold,
           alignment: Alignment.centerLeft,
+          maxLines: 1,
         ),
         SizedBox(height: AppDimensions.height7),
         /// product description
@@ -29,6 +30,7 @@ class ItemNameAndDescription extends StatelessWidget {
           fontSize: AppDimensions.font16,
           color: Colors.grey,
           alignment: Alignment.centerLeft,
+          maxLines: 2,
         ),
       ],
     );

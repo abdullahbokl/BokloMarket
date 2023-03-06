@@ -10,7 +10,7 @@ class Redirects {
   /// redirect to Login page on boarding is already visited
   static FutureOr<String?> redirectIfOnBoardingVisited(
       BuildContext context, GoRouterState state) {
-    return !Hive.box(AppStrings.kOnBoardingBox).get(AppStrings.kOnBoardingBox)
+    return Hive.box(AppStrings.kOnBoardingBox).get(AppStrings.kOnBoardingBox) != true
         ? null
         : Paths.kSignInRoute;
   }
@@ -18,6 +18,6 @@ class Redirects {
   /// redirect to home page if user is logged in
   static FutureOr<String?> redirectIfLoggedIn(
       BuildContext context, GoRouterState state) {
-    return FirebaseAuth.instance.currentUser != null ? Paths.kHomeRoute : null;
+    return FirebaseAuth.instance.currentUser != null ? Paths.kBottomNavBarRoute : null;
   }
 }

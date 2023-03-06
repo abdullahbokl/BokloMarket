@@ -6,7 +6,8 @@ import 'package:boklo_mart/core/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class HomeGridViewCardBody extends StatelessWidget {
-  const HomeGridViewCardBody({Key? key, required this.product}) : super(key: key);
+  const HomeGridViewCardBody({Key? key, required this.product})
+      : super(key: key);
 
   final ProductModel product;
 
@@ -18,18 +19,21 @@ class HomeGridViewCardBody extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          /// sub category
-          CustomText(
-              text: product.name,
-              color: AppColors.blackHintColor,
-              fontSize: AppDimensions.font14),
-          SizedBox(height: AppDimensions.height7),
-
-          /// Title
+          /// title
           CustomText(
             text: product.name,
+            color: Colors.black,
             fontSize: AppDimensions.font16,
             fontWeight: FontWeight.w600,
+            maxLines: 1,
+          ),
+
+          SizedBox(height: AppDimensions.height7),
+
+          /// description
+          CustomText(
+            text: product.description,
+            fontSize: AppDimensions.font14,
             maxLines: 2,
           ),
 

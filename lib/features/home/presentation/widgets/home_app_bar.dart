@@ -1,4 +1,4 @@
-import 'package:boklo_mart/features/home/presentation/widgets/search/custom_search_delegate.dart';
+import 'package:boklo_mart/features/home/presentation/widgets/custom_search_delegate.dart';
 import 'package:boklo_mart/features/home/presentation/blocs/home_bloc/home_bloc.dart';
 import 'package:boklo_mart/core/utils/app_dimensions.dart';
 import 'package:boklo_mart/core/utils/app_colors.dart';

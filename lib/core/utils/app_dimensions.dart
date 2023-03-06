@@ -3,20 +3,11 @@ class AppDimensions {
   static double height = 0;
   static double width = 0;
 
-  /**
-   *
-   * height =  screenHeight / scaling_factor;
-   *
-   * let suppose want a container which having height 220, screenHeight = 844
-   * then, 844 / 220 = 3.84
-   *
-   **/
-
   /** custom heights **/
 
   static final double itemCardRatio = (width / width160) / (height / height250) * 0.8;
 
-  /**height and width */
+  /** height and width */
 
   static final double height2 = height / 422.6;
   static final double width2 = width / 206.7;
@@ -124,7 +115,7 @@ class AppDimensions {
   static final double height400 = height / 2.1;
   static final double width400 = width / 1.1;
 
-  /**Fonts */
+  ///** Fonts **/
 
   static double font8 = height / 105.4;
   static double font10 = height / 84.4;

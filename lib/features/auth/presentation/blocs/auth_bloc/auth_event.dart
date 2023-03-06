@@ -4,7 +4,7 @@ part of 'auth_bloc.dart';
 abstract class AuthEvent {}
 
 /// log out
-class Logout extends AuthEvent {}
+class SignOut extends AuthEvent {}
 
 /// add user to firestore
 class AddUserToFirestore extends AuthEvent {

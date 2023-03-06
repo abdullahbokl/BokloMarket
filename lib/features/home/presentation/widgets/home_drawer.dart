@@ -2,6 +2,8 @@ import 'package:boklo_mart/core/common/widgets/custom_text_widget.dart';
 import 'package:boklo_mart/core/utils/app_dimensions.dart';
 import 'package:boklo_mart/core/utils/app_assets.dart';
 import 'package:boklo_mart/core/utils/app_colors.dart';
+import 'package:boklo_mart/features/auth/presentation/blocs/auth_bloc/auth_bloc.dart';
+import 'package:boklo_mart/features/home/presentation/blocs/home_bloc/home_bloc.dart';
 import 'package:flutter/material.dart';
 
 class HomeDrawer extends StatelessWidget {
@@ -9,6 +11,8 @@ class HomeDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AuthBloc authBloc = AuthBloc.get(context);
+    HomeBloc homeBloc = HomeBloc.get(context);
     return SizedBox(
       width: AppDimensions.width / 1.3,
       height: AppDimensions.height / 1.3,
@@ -25,13 +29,18 @@ class HomeDrawer extends StatelessWidget {
               SizedBox(height: AppDimensions.height30),
               // logo
               Container(
-                width: AppDimensions.width128,
-                height: AppDimensions.height128,
+                width: AppDimensions.width150,
+                height: AppDimensions.height150,
                 clipBehavior: Clip.antiAlias,
-                decoration: const BoxDecoration(shape: BoxShape.circle),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: AppColors.primaryColor1.withOpacity(0.7),
+
+                ),
                 child: Image.asset(
                   // todo : fetch logo from user
-                  AppImages.logo,
+                  AppImages.emptyImage,
+                  fit: BoxFit.fitHeight,
                 ),
               ),
               SizedBox(height: AppDimensions.height50),
@@ -66,7 +75,7 @@ class HomeDrawer extends StatelessWidget {
               ),
               ListTile(
                 onTap: () {
-                  /// todo : goto help screen
+                  authBloc.add(SignOut());
                 },
                 leading: const Icon(Icons.logout, color: Colors.white),
                 title: const CustomText(text: 'SIGN OUT', color: Colors.white),

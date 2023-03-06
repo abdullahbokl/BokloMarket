@@ -15,20 +15,20 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<AuthEvent>((event, emit) {});
 
     /// Log Out
-    on<Logout>(_signOut);
+    on<SignOut>(_signOut);
   }
 
   /// repositories
   final AuthRepository authRepository = AuthRepository();
 
   /// Sign out
-  Future<void> _signOut(Logout event, Emitter<AuthState> emit) async {
+  Future<void> _signOut(SignOut event, Emitter<AuthState> emit) async {
     emit(AuthLoading());
     try {
       await authRepository.signOut();
-      emit(AuthSuccess());
+      emit(SignOutSuccess());
     } catch (e) {
-      emit(AuthFailure(message: e.toString()));
+      emit(SignOutFailure(message: e.toString()));
     }
   }
 }
