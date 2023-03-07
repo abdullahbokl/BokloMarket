@@ -5,7 +5,7 @@ class AppDimensions {
 
   /** custom heights **/
 
-  static final double itemCardRatio = (width / width160) / (height / height250) * 0.8;
+  static final double itemCardRatio = (width / width160) / (height / height250) * 0.9;
 
   /** height and width */
 
@@ -142,6 +142,7 @@ class AppDimensions {
   static final double radius40 = height / 21.7;
   static final double radius45 = height / 19.3;
   static final double radius50 = height / 17.3;
+  static final double radius80 = height / 10.5;
 
   /**Icon size */
   static final double iconSize5 = height / 173.4;

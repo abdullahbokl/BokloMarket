@@ -2,6 +2,7 @@ import 'package:boklo_mart/features/bottom_navigation_bar/data/models/bottom_nav
 import 'package:boklo_mart/features/profile/presentation/views/profile_screen.dart';
 import 'package:boklo_mart/features/home/presentation/views/home_screen.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+import 'package:boklo_mart/core/utils/app_dimensions.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
@@ -21,9 +22,18 @@ class BottomNavBarCubit extends Cubit<BottomNavBarState> {
 
   /// screens
   final List<Widget> _screens = [
-    const HomeScreen(),
-    const ProfileScreen(),
+    _widgetWithPadding(const HomeScreen()),
+    _widgetWithPadding(const ProfileScreen()),
   ];
+
+  static Widget _widgetWithPadding(Widget widget) {
+    return Padding(
+      padding: EdgeInsets.only(
+        bottom: 0,
+      ),
+      child: widget,
+    );
+  }
 
   List<Widget> get screens => _screens;
 

@@ -10,7 +10,6 @@ class BottomNavBarScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final BottomNavBarCubit bottomNavBarCubit = BottomNavBarCubit.get(context);
-
     return PersistentTabView(
       context,
       controller: bottomNavBarCubit.tabsController,
@@ -38,7 +37,7 @@ class BottomNavBarScreen extends StatelessWidget {
         duration: Duration(milliseconds: 200),
       ),
       navBarStyle:
-          NavBarStyle.style2, // Choose the nav bar style with this property.
+          NavBarStyle.style4, // Choose the nav bar style with this property.
     );
   }
 

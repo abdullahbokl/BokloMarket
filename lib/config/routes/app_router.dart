@@ -8,6 +8,7 @@ import 'package:boklo_mart/features/on_boarding/presentation/bloc/on_boarding_bl
 import 'package:boklo_mart/features/auth/presentation/views/reset_password_page.dart';
 import 'package:boklo_mart/features/auth/presentation/blocs/auth_bloc/auth_bloc.dart';
 import 'package:boklo_mart/features/home/presentation/blocs/home_bloc/home_bloc.dart';
+import 'package:boklo_mart/features/profile/cubits/profile_cubit/profile_cubit.dart';
 import 'package:boklo_mart/features/profile/presentation/views/profile_screen.dart';
 import 'package:boklo_mart/features/auth/presentation/views/register_page.dart';
 import 'package:boklo_mart/features/auth/presentation/views/sign_in_page.dart';
@@ -73,7 +74,9 @@ class AppRouter {
         name: Routes.kBottomNavBarRoute,
         builder: (context, state) => MultiBlocProvider(
           providers: [
+            /// bottom navigation bar cubit
             BlocProvider(create: (context) => BottomNavBarCubit()),
+            /// Home blocs
             BlocProvider(create: (context) => AuthBloc()),
             BlocProvider(
               create: (context) => HomeBloc()
@@ -81,6 +84,8 @@ class AppRouter {
                 ..add(FetchProducts())
                 ..add(SelectCategory(index: 0)),
             ),
+            /// Profile bloc
+            BlocProvider(create: (context) => ProfileCubit()..fetchUser()),
           ],
           child: const BottomNavBarScreen(),
         ),
@@ -88,7 +93,7 @@ class AppRouter {
 
       /// bottom navigation screen
       ShellRoute(
-        builder: (context, state, child) => BottomNavBarScreen(),
+        builder: (context, state, child) => const BottomNavBarScreen(),
         routes: [
           /// home screen
           GoRoute(

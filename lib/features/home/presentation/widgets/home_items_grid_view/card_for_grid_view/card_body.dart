@@ -88,7 +88,7 @@ class HomeGridViewPriceAndSale extends StatelessWidget {
               ? AppDimensions.font16
               : AppDimensions.font18,
           color: product.sale != null ? Colors.grey : Colors.black,
-          decoration: product.sale != null ? TextDecoration.lineThrough : null,
+          textDecoration: product.sale != null ? TextDecoration.lineThrough : null,
         ),
       ],
     );

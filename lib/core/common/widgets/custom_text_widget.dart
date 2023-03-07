@@ -1,36 +1,43 @@
+import 'package:boklo_mart/core/utils/app_dimensions.dart';
 import 'package:flutter/material.dart';
 
 class CustomText extends StatelessWidget {
   final String text;
-  final double fontSize;
-  final Color color;
-  final Alignment alignment;
-  final FontWeight fontWeight;
-  final TextDecoration? decoration;
+  final double? fontSize;
+  final Color? color;
+  final Alignment? alignment;
+  final FontWeight? fontWeight;
+  final TextDecoration? textDecoration;
+  final BoxDecoration? boxDecoration;
   final int? maxLines;
+  final double? height;
 
   const CustomText({
     super.key,
     this.text = '',
-    this.fontSize = 16.0,
-    this.color = Colors.black,
-    this.alignment = Alignment.center,
-    this.fontWeight = FontWeight.w600,
-    this.decoration = TextDecoration.none,
+    this.fontSize,
+    this.color,
+    this.alignment,
+    this.fontWeight,
+    this.textDecoration,
+    this.boxDecoration,
     this.maxLines,
+    this.height,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      alignment: alignment,
+      decoration: boxDecoration,
+      height: height,
+      alignment: alignment ?? Alignment.center,
       child: Text(
         text,
         style: TextStyle(
-          fontSize: fontSize,
-          color: color,
-          fontWeight: fontWeight,
-          decoration: decoration,
+          fontSize: fontSize ?? AppDimensions.font16,
+          color: color ?? Colors.black,
+          fontWeight: fontWeight ?? FontWeight.w600,
+          decoration: textDecoration,
         ),
         textAlign: TextAlign.center,
         maxLines: maxLines,

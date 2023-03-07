@@ -21,7 +21,7 @@ class PriceAndSaleWidget extends StatelessWidget {
           text: '\$$price',
           fontSize: sale != null ? AppDimensions.font16 : AppDimensions.font18,
           color: sale != null ? Colors.grey : Colors.black,
-          decoration: sale != null ? TextDecoration.lineThrough : null,
+          textDecoration: sale != null ? TextDecoration.lineThrough : null,
         ),
         SizedBox(width: AppDimensions.width15),
         if (sale != null)
