@@ -46,7 +46,7 @@ class AuthFirestoreServices {
   /// get user
   Future<UserModel> getUser(String id) async {
     try {
-      final userDoc = await _firestore.collection('users').doc(id).get();
+      final userDoc = await _firestore.collection(AppStrings.kUserCollection).doc(id).get();
       return UserModel.fromJson(userDoc.data()!);
     } catch (e) {
       throw Exception(e.toString());

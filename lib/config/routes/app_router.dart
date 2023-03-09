@@ -1,6 +1,7 @@
 import 'package:boklo_mart/features/bottom_navigation_bar/cubits/bottom_nav_bar_cubit/bottom_nav_bar_cubit.dart';
 import 'package:boklo_mart/features/auth/presentation/cubits/reset_password_cubit/reset_password_cubit.dart';
 import 'package:boklo_mart/features/bottom_navigation_bar/presentation/views/bottom_nav_bar_screen.dart';
+import 'package:boklo_mart/features/profile/presentation/cubits/profile_cubit/profile_cubit.dart';
 import 'package:boklo_mart/features/auth/presentation/blocs/register_bloc/register_bloc.dart';
 import 'package:boklo_mart/features/auth/presentation/blocs/sign_in_bloc/sign_in_bloc.dart';
 import 'package:boklo_mart/features/on_boarding/presentation/views/on_boarding_screen.dart';
@@ -8,7 +9,7 @@ import 'package:boklo_mart/features/on_boarding/presentation/bloc/on_boarding_bl
 import 'package:boklo_mart/features/auth/presentation/views/reset_password_page.dart';
 import 'package:boklo_mart/features/auth/presentation/blocs/auth_bloc/auth_bloc.dart';
 import 'package:boklo_mart/features/home/presentation/blocs/home_bloc/home_bloc.dart';
-import 'package:boklo_mart/features/profile/cubits/profile_cubit/profile_cubit.dart';
+import 'package:boklo_mart/features/profile/presentation/views/edit_user_data.dart';
 import 'package:boklo_mart/features/profile/presentation/views/profile_screen.dart';
 import 'package:boklo_mart/features/auth/presentation/views/register_page.dart';
 import 'package:boklo_mart/features/auth/presentation/views/sign_in_page.dart';
@@ -23,6 +24,7 @@ class AppRouter {
   const AppRouter();
 
   static final GoRouter goRouter = GoRouter(
+    navigatorKey: Routes.mainNavigatorKey,
     initialLocation: Paths.kOnBoardingRoute,
     routes: <RouteBase>[
       /// on boarding page
@@ -75,17 +77,25 @@ class AppRouter {
         builder: (context, state) => MultiBlocProvider(
           providers: [
             /// bottom navigation bar cubit
-            BlocProvider(create: (context) => BottomNavBarCubit()),
+            BlocProvider(lazy: false, create: (context) => BottomNavBarCubit()),
+
+            /// Auth bloc
+            BlocProvider(
+              lazy: false,
+              create: (context) => AuthBloc()..add(FetchUserFromFirestore()),
+            ),
+
             /// Home blocs
-            BlocProvider(create: (context) => AuthBloc()),
             BlocProvider(
               create: (context) => HomeBloc()
                 ..loadUserToken()
                 ..add(FetchProducts())
                 ..add(SelectCategory(index: 0)),
             ),
+
             /// Profile bloc
-            BlocProvider(create: (context) => ProfileCubit()..fetchUser()),
+            BlocProvider(
+                lazy: false, create: (context) => ProfileCubit()..fetchUser()),
           ],
           child: const BottomNavBarScreen(),
         ),
@@ -93,6 +103,7 @@ class AppRouter {
 
       /// bottom navigation screen
       ShellRoute(
+        navigatorKey: Routes.shellNavigatorKey,
         builder: (context, state, child) => const BottomNavBarScreen(),
         routes: [
           /// home screen
@@ -107,27 +118,17 @@ class AppRouter {
             path: Paths.kProfileRoute,
             name: Routes.kProfileRoute,
             builder: (context, state) => const ProfileScreen(),
+            routes: [
+              /// edit profile screen
+              GoRoute(
+                path: Paths.kEditProfileRoute,
+                name: Routes.kEditProfileRoute,
+                builder: (context, state) => const EditUserDataScreen(),
+              ),
+            ],
           ),
         ],
       ),
-
-      /// home page
-      // GoRoute(
-      //   path: Paths.kHomeRoute,
-      //   name: Routes.kHomeRoute,
-      //   builder: (context, state) => MultiBlocProvider(
-      //     providers: [
-      //       BlocProvider(create: (context) => AuthBloc()),
-      //       BlocProvider(
-      //         create: (context) => HomeBloc()
-      //           ..loadUserToken()
-      //           ..add(FetchProducts())
-      //           ..add(SelectCategory(index: 0)),
-      //       ),
-      //     ],
-      //     child: const HomePage(),
-      //   ),
-      // ),
     ],
   );
 }

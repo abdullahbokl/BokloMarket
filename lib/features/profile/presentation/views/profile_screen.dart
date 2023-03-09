@@ -1,60 +1,41 @@
-import 'package:boklo_mart/core/common/widgets/custom_button_widget.dart';
-import 'package:boklo_mart/core/common/widgets/custom_text_widget.dart';
-import 'package:boklo_mart/core/utils/app_colors.dart';
-import 'package:boklo_mart/core/utils/app_dimensions.dart';
 import 'package:boklo_mart/features/auth/presentation/blocs/auth_bloc/auth_bloc.dart';
-import 'package:boklo_mart/features/profile/cubits/profile_cubit/profile_cubit.dart';
-import 'package:boklo_mart/core/utils/app_assets.dart';
-import 'package:boklo_mart/features/profile/presentation/widgets/details_text_field.dart';
+import 'package:boklo_mart/features/auth/presentation/widgets/loading_indicator.dart';
+import 'package:boklo_mart/features/profile/presentation/views/user_data_screen.dart';
+import 'package:boklo_mart/core/utils/app_dimensions.dart';
+import 'package:boklo_mart/core/utils/app_constants.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final ProfileCubit profileCubit = ProfileCubit.get(context);
-    final AuthBloc authBloc = AuthBloc.get(context);
-
     return SafeArea(
       child: Scaffold(
         body: Padding(
           padding: _padding(),
-          child: Column(
-            children: [
-              CircleAvatar(
-                radius: AppDimensions.radius80,
-
-                /// todo : add user image
-                backgroundImage: AssetImage(AppImages.emptyImage),
-              ),
-              SizedBox(height: AppDimensions.height30),
-              DetailsTextField(
-                text: 'Abdullah Khaled Elbokl',
-                onTap: () {},
-              ),
-              SizedBox(height: AppDimensions.height20),
-              DetailsTextField(
-                text: 'email@email.com',
-                onTap: () {},
-              ),
-              SizedBox(height: AppDimensions.height20),
-              DetailsTextField(
-                text: '**********',
-                onTap: () {},
-              ),
-              SizedBox(height: AppDimensions.height20),
-              CustomButton(
-                text: 'Update',
-                onTap: () {},
-              ),
-              SizedBox(height: AppDimensions.height20),
-              CustomButton(
-                text: 'Save',
-                onTap: () {},
-              ),
-            ],
+          child: SizedBox(
+            height: double.maxFinite,
+            width: double.maxFinite,
+            child: BlocConsumer<AuthBloc, AuthState>(
+              listener: (context, state) {
+                if (state is AuthFailure) {
+                  AppConstants.showAwesomeDialog(
+                    context: context,
+                    dialogType: DialogType.error,
+                    dialogTitle: 'Error',
+                    message: state.message,
+                    titleColor: Colors.red,
+                  );
+                }
+              },
+              builder: (context, state) {
+                /// todo : Shimmer effect
+                return const UserDataScreen();
+              },
+            ),
           ),
         ),
       ),

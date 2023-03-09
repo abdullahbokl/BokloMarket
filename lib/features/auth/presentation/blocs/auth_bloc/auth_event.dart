@@ -12,3 +12,6 @@ class AddUserToFirestore extends AuthEvent {
 
   AddUserToFirestore({required this.user});
 }
+
+/// fetch user from firestore
+class FetchUserFromFirestore extends AuthEvent {}

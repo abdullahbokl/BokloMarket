@@ -29,7 +29,7 @@ class BottomNavBarCubit extends Cubit<BottomNavBarState> {
   static Widget _widgetWithPadding(Widget widget) {
     return Padding(
       padding: EdgeInsets.only(
-        bottom: 0,
+        bottom: AppDimensions.height15,
       ),
       child: widget,
     );

@@ -12,6 +12,9 @@ class CustomTextFormField extends StatelessWidget {
   final VoidCallback? onSuffixIconTap;
   final int? maxLines;
   final TextInputType? keyboardType;
+  final bool? isEnabled;
+  final bool? autoFocus;
+  final FocusNode? focusNode;
 
   const CustomTextFormField({
     super.key,
@@ -25,6 +28,9 @@ class CustomTextFormField extends StatelessWidget {
     this.onSuffixIconTap,
     this.maxLines,
     this.keyboardType,
+    this.isEnabled,
+    this.autoFocus,
+    this.focusNode,
   });
 
   @override
@@ -56,6 +62,9 @@ class CustomTextFormField extends StatelessWidget {
           SizedBox(width: AppDimensions.width10),
           Expanded(
             child: TextFormField(
+              autofocus: autoFocus ?? false,
+              focusNode: focusNode,
+              enabled: isEnabled ?? true,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               controller: controller,
               obscureText: obscureText ?? false,

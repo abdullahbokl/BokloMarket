@@ -12,6 +12,8 @@ class CustomButton extends StatelessWidget {
   final double? width;
   final Color textColor;
   final BorderRadiusGeometry? radius;
+  final IconData? suffixIcon;
+  final Color? suffixIconColor;
 
   const CustomButton(
       {Key? key,
@@ -23,7 +25,9 @@ class CustomButton extends StatelessWidget {
       this.width,
       this.gradient,
       this.textColor = Colors.white,
-      this.radius})
+      this.radius,
+      this.suffixIcon,
+      this.suffixIconColor})
       : super(key: key);
 
   @override
@@ -44,11 +48,24 @@ class CustomButton extends StatelessWidget {
           borderRadius: radius ?? BorderRadius.circular(AppDimensions.radius5),
           gradient: gradient,
         ),
-        child: CustomText(
-          text: text,
-          color: textColor,
-          fontSize: size ?? AppDimensions.font16,
-          fontWeight: FontWeight.w600,
+        child: Row(
+          mainAxisAlignment: suffixIcon != null
+              ? MainAxisAlignment.spaceBetween
+              : MainAxisAlignment.center,
+          children: [
+            CustomText(
+              text: text,
+              color: textColor,
+              fontSize: size ?? AppDimensions.font16,
+              fontWeight: FontWeight.w600,
+            ),
+            if (suffixIcon != null)
+              Icon(
+                suffixIcon,
+                color: suffixIconColor,
+                size: size ?? AppDimensions.font16,
+              ),
+          ],
         ),
       ),
     );

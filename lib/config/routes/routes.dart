@@ -1,4 +1,9 @@
+import 'package:flutter/material.dart';
+
 class Routes {
+  static final GlobalKey<NavigatorState> mainNavigatorKey = GlobalKey<NavigatorState>();
+  static final GlobalKey<NavigatorState> shellNavigatorKey = GlobalKey<NavigatorState>();
+
   static const String kOnBoardingRoute = 'onBoardingRoute';
   static const String kSignInRoute = 'signInRoute';
   static const String kRegisterRoute = 'registerRoute';
@@ -8,6 +13,7 @@ class Routes {
   static const String kControlRoute = 'controlRoute';
   static const String kCartRoute = 'cartRoute';
   static const String kProfileRoute = 'profileRoute';
+  static const String kEditProfileRoute = 'editProfileRoute';
 }
 
 
@@ -21,4 +27,5 @@ class Paths {
   static const String kControlRoute = 'control';
   static const String kCartRoute = 'cart';
   static const String kProfileRoute = '/profile';
+  static const String kEditProfileRoute = 'editProfile';
 }

@@ -18,7 +18,7 @@ class BokloMarket extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         /// add auth bloc
-        BlocProvider<AuthBloc>(create: (context) => AuthBloc()),
+        // BlocProvider<AuthBloc>(create: (context) => AuthBloc()),
 
         /// show hide password cubit
         BlocProvider<ShowHidePasswordCubit>(
