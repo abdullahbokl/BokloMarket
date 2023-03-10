@@ -12,33 +12,9 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Padding(
-          padding: _padding(),
-          child: SizedBox(
-            height: double.maxFinite,
-            width: double.maxFinite,
-            child: BlocConsumer<AuthBloc, AuthState>(
-              listener: (context, state) {
-                if (state is AuthFailure) {
-                  AppConstants.showAwesomeDialog(
-                    context: context,
-                    dialogType: DialogType.error,
-                    dialogTitle: 'Error',
-                    message: state.message,
-                    titleColor: Colors.red,
-                  );
-                }
-              },
-              builder: (context, state) {
-                /// todo : Shimmer effect
-                return const UserDataScreen();
-              },
-            ),
-          ),
-        ),
-      ),
+    return Padding(
+      padding: _padding(),
+      child: const UserDataScreen(),
     );
   }
 

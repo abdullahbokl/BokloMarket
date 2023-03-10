@@ -1,7 +1,5 @@
-import 'package:boklo_mart/features/bottom_navigation_bar/data/models/bottom_nav_bar_item_model.dart';
 import 'package:boklo_mart/features/profile/presentation/views/profile_screen.dart';
 import 'package:boklo_mart/features/home/presentation/views/home_screen.dart';
-import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:boklo_mart/core/utils/app_dimensions.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
@@ -14,11 +12,13 @@ class BottomNavBarCubit extends Cubit<BottomNavBarState> {
 
   BottomNavBarCubit() : super(BottomNavBarInitial());
 
-  /// controllers
-  final PersistentTabController _controller =
-      PersistentTabController(initialIndex: 0);
-
-  PersistentTabController get tabsController => _controller;
+  /// index
+  int _currentIndex = 0;
+  int get currentIndex => _currentIndex;
+  set currentIndex(int index) {
+    _currentIndex = index;
+    emit(BottomNavBarIndexChanged());
+  }
 
   /// screens
   final List<Widget> _screens = [
@@ -38,18 +38,20 @@ class BottomNavBarCubit extends Cubit<BottomNavBarState> {
   List<Widget> get screens => _screens;
 
   /// items
-  List<PersistentBottomNavBarItem> _navItems() {
-    return [
-      BottomNavBarItemModel(
-        icon: const Icon(Icons.home),
-        title: 'Home',
+  List<BottomNavigationBarItem> _navItems() {
+    return const [
+      BottomNavigationBarItem(
+        icon: Icon(Icons.home),
+        label: 'Home',
+        backgroundColor: Colors.pink,
       ),
-      BottomNavBarItemModel(
-        icon: const Icon(Icons.person),
-        title: 'Profile',
+      BottomNavigationBarItem(
+        icon: Icon(Icons.person),
+        label: 'Profile',
+        backgroundColor: Colors.pink,
       ),
     ];
   }
 
-  List<PersistentBottomNavBarItem> get items => _navItems();
+  List<BottomNavigationBarItem> get items => _navItems();
 }

@@ -70,18 +70,16 @@ class AppRouter {
         ],
       ),
 
-      /// bottom navigation bar
-      GoRoute(
-        path: Paths.kBottomNavBarRoute,
-        name: Routes.kBottomNavBarRoute,
-        builder: (context, state) => MultiBlocProvider(
+      /// bottom navigation screen
+      ShellRoute(
+        navigatorKey: Routes.shellNavigatorKey,
+        builder: (context, state, child) => MultiBlocProvider(
           providers: [
             /// bottom navigation bar cubit
-            BlocProvider(lazy: false, create: (context) => BottomNavBarCubit()),
+            BlocProvider(create: (context) => BottomNavBarCubit()),
 
             /// Auth bloc
             BlocProvider(
-              lazy: false,
               create: (context) => AuthBloc()..add(FetchUserFromFirestore()),
             ),
 
@@ -94,17 +92,10 @@ class AppRouter {
             ),
 
             /// Profile bloc
-            BlocProvider(
-                lazy: false, create: (context) => ProfileCubit()..fetchUser()),
+            BlocProvider(create: (context) => ProfileCubit()),
           ],
-          child: const BottomNavBarScreen(),
+          child: BottomNavBarScreen(child: child),
         ),
-      ),
-
-      /// bottom navigation screen
-      ShellRoute(
-        navigatorKey: Routes.shellNavigatorKey,
-        builder: (context, state, child) => const BottomNavBarScreen(),
         routes: [
           /// home screen
           GoRoute(

@@ -19,13 +19,6 @@ class ProfileCubit extends Cubit<ProfileState> {
 
   /// variables
 
-  UserModel user = UserModel(
-    name: '',
-    email: '',
-    image: '',
-    id: '',
-  );
-
   bool isNameEnabled = true;
   bool isEmailEnabled = true;
   bool isPasswordEnabled = true;
@@ -33,21 +26,4 @@ class ProfileCubit extends Cubit<ProfileState> {
   // instances
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final AuthFirestoreServices _authFirestoreServices = AuthFirestoreServices();
-
-  /// methods
-  fetchUser() async {
-    emit(ProfileLoading());
-    try {
-      /// get user from firebase
-      String userID = _auth.currentUser!.uid;
-      user = await _authFirestoreServices.getUser(userID);
-      nameController.text = user.name;
-      emailController.text = user.email;
-      passwordController.text = '********';
-      emit(ProfileSuccess());
-    } catch (e) {
-      emit(ProfileError(e.toString()));
-    }
-  }
-
 }

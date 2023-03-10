@@ -1,24 +1,25 @@
-import 'package:boklo_mart/features/profile/presentation/cubits/profile_cubit/profile_cubit.dart';
 import 'package:boklo_mart/core/utils/app_dimensions.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:boklo_mart/core/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class AvatarImage extends StatelessWidget {
   const AvatarImage({
     super.key,
+    required this.imageUrl,
   });
+
+  final String imageUrl;
 
   @override
   Widget build(BuildContext context) {
-    ProfileCubit profileCubit = ProfileCubit.get(context);
-
-    return BlocBuilder<ProfileCubit, ProfileState>(
-      builder: (context, state) {
-        return CircleAvatar(
-          radius: AppDimensions.radius80,
-          backgroundImage: NetworkImage(profileCubit.user.image ?? ''),
-        );
-      },
+    return Container(
+      height: AppDimensions.height160,
+      width: AppDimensions.height160,
+      decoration: BoxDecoration(
+        gradient: AppColors.primaryGradient(),
+        borderRadius: BorderRadius.circular(AppDimensions.radius80),
+      ),
+      child: Image.network(imageUrl),
     );
   }
 }

@@ -19,7 +19,9 @@ class EditProfileButton extends StatelessWidget {
       gradient: AppColors.secondaryGradient(),
       text: 'Edit profile',
       onTap: () {
-        GoRouter.of(context).pushNamed(Routes.kEditProfileRoute);
+        GoRouter.of(context).pushNamed(
+          Routes.kEditProfileRoute,
+        );
       },
     );
   }

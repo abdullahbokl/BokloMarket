@@ -48,7 +48,6 @@ dependencies:
   hive: ^2.2.3
   hive_flutter:
   card_swiper: ^2.0.4
-  persistent_bottom_nav_bar: ^5.0.2
   shimmer: ^2.0.0
 
 

@@ -1,9 +1,8 @@
-import 'package:boklo_mart/core/common/widgets/custom_text_widget.dart';
-import 'package:boklo_mart/core/utils/app_dimensions.dart';
-import 'package:boklo_mart/core/utils/app_assets.dart';
-import 'package:boklo_mart/core/utils/app_colors.dart';
 import 'package:boklo_mart/features/auth/presentation/blocs/auth_bloc/auth_bloc.dart';
-import 'package:boklo_mart/features/home/presentation/blocs/home_bloc/home_bloc.dart';
+import 'package:boklo_mart/core/common/widgets/custom_text_widget.dart';
+import 'package:boklo_mart/core/common/widgets/avatar_image.dart';
+import 'package:boklo_mart/core/utils/app_dimensions.dart';
+import 'package:boklo_mart/core/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class HomeDrawer extends StatelessWidget {
@@ -12,7 +11,6 @@ class HomeDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AuthBloc authBloc = AuthBloc.get(context);
-    HomeBloc homeBloc = HomeBloc.get(context);
     return SizedBox(
       width: AppDimensions.width / 1.3,
       height: AppDimensions.height / 1.3,
@@ -23,26 +21,12 @@ class HomeDrawer extends StatelessWidget {
             gradient: AppColors.primaryGradient(),
             borderRadius: BorderRadius.circular(AppDimensions.radius10),
           ),
-          child: ListView(
+          child: Column(
             // padding: EdgeInsets.zero,
             children: [
               SizedBox(height: AppDimensions.height30),
               // logo
-              Container(
-                width: AppDimensions.width150,
-                height: AppDimensions.height150,
-                clipBehavior: Clip.antiAlias,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: AppColors.primaryColor1.withOpacity(0.7),
-
-                ),
-                child: Image.asset(
-                  // todo : fetch logo from user
-                  AppImages.emptyImage,
-                  fit: BoxFit.fitHeight,
-                ),
-              ),
+              AvatarImage(imageUrl: authBloc.user.image ?? ''),
               SizedBox(height: AppDimensions.height50),
               ListTile(
                 onTap: () {

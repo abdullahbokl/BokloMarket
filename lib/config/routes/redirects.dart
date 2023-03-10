@@ -18,6 +18,6 @@ class Redirects {
   /// redirect to home page if user is logged in
   static FutureOr<String?> redirectIfLoggedIn(
       BuildContext context, GoRouterState state) {
-    return FirebaseAuth.instance.currentUser != null ? Paths.kBottomNavBarRoute : null;
+    return FirebaseAuth.instance.currentUser != null ? Paths.kHomeRoute : null;
   }
 }
