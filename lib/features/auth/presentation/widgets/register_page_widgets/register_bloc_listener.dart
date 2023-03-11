@@ -2,7 +2,6 @@ import 'package:boklo_mart/features/auth/presentation/blocs/register_bloc/regist
 import 'package:boklo_mart/core/utils/app_constants.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
 
 class RegisterBlocListener extends StatelessWidget {
@@ -23,8 +22,7 @@ class RegisterBlocListener extends StatelessWidget {
             titleColor: Colors.green,
             btnOkText: 'Login',
             onOkTap: () {
-              // close the dialog and go back to login page
-              GoRouter.of(context).pop();
+              Navigator.of(context).pop();
             },
           );
         } else if (state is RegisterFailure) {

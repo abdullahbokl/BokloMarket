@@ -1,11 +1,9 @@
-import 'dart:async';
-
-import 'package:boklo_mart/core/utils/app_strings.dart';
 import 'package:boklo_mart/features/on_boarding/data/models/page_model.dart';
+import 'package:boklo_mart/core/utils/app_strings.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:flutter/material.dart';
+import 'dart:async';
 
 part 'on_boarding_event.dart';
 
@@ -96,7 +94,8 @@ class OnBoardingBloc extends Bloc<OnBoardingEvent, OnBoardingState> {
   }
 
   FutureOr<void> _onBoardingPageIndicatorChange(
-      OnBoardingPageIndicatorPositionChange event, Emitter<OnBoardingState> emit) {
+      OnBoardingPageIndicatorPositionChange event,
+      Emitter<OnBoardingState> emit) {
     pageIndicatorPosition = pageController.page ?? 0.0;
     emit(OnBoardingDone());
   }

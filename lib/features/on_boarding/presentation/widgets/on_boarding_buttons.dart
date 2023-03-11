@@ -1,11 +1,10 @@
-import 'package:boklo_mart/config/routes/routes.dart';
 import 'package:boklo_mart/features/on_boarding/presentation/bloc/on_boarding_bloc.dart';
 import 'package:boklo_mart/core/common/widgets/custom_button_widget.dart';
 import 'package:boklo_mart/core/utils/app_dimensions.dart';
 import 'package:boklo_mart/core/utils/app_colors.dart';
+import 'package:boklo_mart/config/routes/routes.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class OnBoardingButtons extends StatelessWidget {
   const OnBoardingButtons({Key? key}) : super(key: key);
@@ -29,7 +28,8 @@ class OnBoardingButtons extends StatelessWidget {
                   color: AppColors.primaryColor1,
                   onTap: () {
                     onBoardingBloc.add(OnBoardingDoneButtonPressed());
-                    GoRouter.of(context).goNamed(Routes.kSignInRoute);
+                    Navigator.of(context).pushReplacementNamed(Routes.kSignInRoute);
+
                   },
                 )
               : Row(

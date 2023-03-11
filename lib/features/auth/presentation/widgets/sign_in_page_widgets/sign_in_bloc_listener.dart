@@ -4,7 +4,6 @@ import 'package:boklo_mart/core/utils/app_strings.dart';
 import 'package:boklo_mart/config/routes/routes.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
 
 class SignInListener extends StatelessWidget {
@@ -17,24 +16,7 @@ class SignInListener extends StatelessWidget {
     return BlocListener<SignInBloc, SignInState>(
       listener: (context, state) {
         if (state is SignInSuccess) {
-          GoRouter.of(context).goNamed(Routes.kHomeRoute);
-        } else if (state is SignInFailure &&
-            state.message == AppStrings.verifyEmail) {
-          AppConstants.showAwesomeDialog(
-            context: context,
-            dialogType: DialogType.error,
-            dialogTitle: 'Error',
-            message: state.message.toString(),
-            titleColor: Colors.red,
-            btnOkText: 'OK',
-            onOkTap: () {
-              /*close dialog*/
-            },
-            btnCancelText: 'Resend Email',
-            onCancelTap: () {
-              SignInBloc.get(context).add(ResendEmailVerification());
-            },
-          );
+          Navigator.of(context).pushReplacementNamed(Routes.kBottomNavBarRoute);
         } else if (state is SignInFailure) {
           AppConstants.showAwesomeDialog(
             context: context,

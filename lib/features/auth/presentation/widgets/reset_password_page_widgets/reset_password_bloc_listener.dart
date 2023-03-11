@@ -3,10 +3,10 @@ import 'package:boklo_mart/core/utils/app_constants.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class ResetPasswordBlocListener extends StatelessWidget {
-  const ResetPasswordBlocListener({Key? key, required this.child}) : super(key: key);
+  const ResetPasswordBlocListener({Key? key, required this.child})
+      : super(key: key);
 
   final Widget child;
 
@@ -22,7 +22,7 @@ class ResetPasswordBlocListener extends StatelessWidget {
             message: 'Password reset link has been sent to your email address',
             titleColor: Colors.green,
             onOkTap: () {
-              GoRouter.of(context).pop();
+              Navigator.of(context).pop();
             },
           );
         } else if (state is ResetPasswordError) {
@@ -33,11 +33,10 @@ class ResetPasswordBlocListener extends StatelessWidget {
             message: state.message,
             titleColor: Colors.red,
             onOkTap: () {
-              GoRouter.of(context).pop();
+              Navigator.of(context).pop();
             },
           );
         }
-
       },
       child: child,
     );

@@ -1,17 +1,12 @@
+import 'package:boklo_mart/features/auth/presentation/widgets/sign_in_page_widgets/sign_in_password.dart';
 import 'package:boklo_mart/features/auth/presentation/blocs/sign_in_bloc/sign_in_bloc.dart';
-import 'package:boklo_mart/features/auth/presentation/cubits/show_hide_password_cubit/show_hide_password_cubit.dart';
-import 'package:boklo_mart/features/auth/presentation/widgets/password_text_field.dart';
 import 'package:boklo_mart/core/common/widgets/custom_text_form_field_widget.dart';
 import 'package:boklo_mart/core/common/widgets/custom_button_widget.dart';
 import 'package:boklo_mart/core/common/widgets/custom_text_widget.dart';
 import 'package:boklo_mart/core/utils/data_validation.dart';
 import 'package:boklo_mart/core/utils/app_dimensions.dart';
-import 'package:boklo_mart/core/utils/app_strings.dart';
 import 'package:boklo_mart/core/utils/app_colors.dart';
 import 'package:boklo_mart/config/routes/routes.dart';
-import 'package:boklo_mart/features/auth/presentation/widgets/sign_in_page_widgets/sign_in_password.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
 
 class SignInForm extends StatelessWidget {
@@ -47,7 +42,7 @@ class SignInForm extends StatelessWidget {
             /// forget password button
             TextButton(
               onPressed: () {
-                context.pushNamed(Routes.kForgetPasswordRoute);
+                Navigator.of(context).pushNamed(Routes.kForgetPasswordRoute);
               },
               child: SizedBox(
                 width: AppDimensions.width100,

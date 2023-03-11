@@ -1,125 +1,74 @@
-import 'package:boklo_mart/features/bottom_navigation_bar/cubits/bottom_nav_bar_cubit/bottom_nav_bar_cubit.dart';
-import 'package:boklo_mart/features/auth/presentation/cubits/reset_password_cubit/reset_password_cubit.dart';
 import 'package:boklo_mart/features/bottom_navigation_bar/presentation/views/bottom_nav_bar_screen.dart';
-import 'package:boklo_mart/features/profile/presentation/cubits/profile_cubit/profile_cubit.dart';
-import 'package:boklo_mart/features/auth/presentation/blocs/register_bloc/register_bloc.dart';
-import 'package:boklo_mart/features/auth/presentation/blocs/sign_in_bloc/sign_in_bloc.dart';
 import 'package:boklo_mart/features/on_boarding/presentation/views/on_boarding_screen.dart';
-import 'package:boklo_mart/features/on_boarding/presentation/bloc/on_boarding_bloc.dart';
-import 'package:boklo_mart/features/auth/presentation/views/reset_password_page.dart';
+import 'package:boklo_mart/features/auth/presentation/views/reset_password_screen.dart';
 import 'package:boklo_mart/features/auth/presentation/blocs/auth_bloc/auth_bloc.dart';
-import 'package:boklo_mart/features/home/presentation/blocs/home_bloc/home_bloc.dart';
 import 'package:boklo_mart/features/profile/presentation/views/edit_user_data.dart';
 import 'package:boklo_mart/features/profile/presentation/views/profile_screen.dart';
-import 'package:boklo_mart/features/auth/presentation/views/register_page.dart';
-import 'package:boklo_mart/features/auth/presentation/views/sign_in_page.dart';
+import 'package:boklo_mart/features/auth/presentation/views/register_screen.dart';
+import 'package:boklo_mart/features/auth/presentation/views/sign_in_screen.dart';
 import 'package:boklo_mart/features/home/presentation/views/home_screen.dart';
-import 'package:boklo_mart/config/routes/redirects.dart';
 import 'package:boklo_mart/config/routes/routes.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter/material.dart';
 
-/// GoRouter configuration
 class AppRouter {
-  const AppRouter();
-
-  static final GoRouter goRouter = GoRouter(
-    navigatorKey: Routes.mainNavigatorKey,
-    initialLocation: Paths.kOnBoardingRoute,
-    routes: <RouteBase>[
-      /// on boarding page
-      GoRoute(
-        path: Paths.kOnBoardingRoute,
-        name: Routes.kOnBoardingRoute,
-        builder: (context, state) => BlocProvider(
-          create: (context) => OnBoardingBloc(),
-          child: const OnBoardingScreen(),
-        ),
-        redirect: Redirects.redirectIfOnBoardingVisited,
-      ),
-
-      /// login page
-      GoRoute(
-        path: Paths.kSignInRoute,
-        name: Routes.kSignInRoute,
-        redirect: Redirects.redirectIfLoggedIn,
-        builder: (context, state) => BlocProvider(
-          create: (context) => SignInBloc(),
-          child: const SignInPage(),
-        ),
-        routes: [
-          /// register page
-          GoRoute(
-            path: Paths.kRegisterRoute,
-            name: Routes.kRegisterRoute,
-            builder: (context, state) => BlocProvider(
-              create: (context) => RegisterBloc(),
-              child: const RegisterPage(),
-            ),
-          ),
-
-          /// forget password page
-          GoRoute(
-            path: Paths.kForgetPasswordRoute,
-            name: Routes.kForgetPasswordRoute,
-            builder: (context, state) => BlocProvider(
-              create: (context) => ResetPasswordCubit(),
-              child: const ResetPasswordPage(),
-            ),
-          ),
-        ],
-      ),
-
-      /// bottom navigation screen
-      ShellRoute(
-        navigatorKey: Routes.shellNavigatorKey,
-        builder: (context, state, child) => MultiBlocProvider(
-          providers: [
-            /// bottom navigation bar cubit
-            BlocProvider(create: (context) => BottomNavBarCubit()),
-
-            /// Auth bloc
-            BlocProvider(
-              create: (context) => AuthBloc()..add(FetchUserFromFirestore()),
-            ),
-
-            /// Home blocs
-            BlocProvider(
-              create: (context) => HomeBloc()
-                ..loadUserToken()
-                ..add(FetchProducts())
-                ..add(SelectCategory(index: 0)),
-            ),
-
-            /// Profile bloc
-            BlocProvider(create: (context) => ProfileCubit()),
-          ],
-          child: BottomNavBarScreen(child: child),
-        ),
-        routes: [
-          /// home screen
-          GoRoute(
-            path: Paths.kHomeRoute,
-            name: Routes.kHomeRoute,
-            builder: (context, state) => const HomeScreen(),
-          ),
-
-          /// profile screen
-          GoRoute(
-            path: Paths.kProfileRoute,
-            name: Routes.kProfileRoute,
-            builder: (context, state) => const ProfileScreen(),
-            routes: [
-              /// edit profile screen
-              GoRoute(
-                path: Paths.kEditProfileRoute,
-                name: Routes.kEditProfileRoute,
-                builder: (context, state) => const EditUserDataScreen(),
+  static Route<dynamic> generateRoute(RouteSettings settings) {
+    switch (settings.name) {
+    // on boarding screen
+      case Routes.kOnBoardingRoute:
+        return MaterialPageRoute(
+          builder: (_) => const OnBoardingScreen(),
+        );
+    // return sign in screen
+      case Routes.kSignInRoute:
+        return MaterialPageRoute(
+          builder: (_) => const SignInScreen(),
+        );
+    // return register screen
+      case Routes.kRegisterRoute:
+        return MaterialPageRoute(
+          builder: (_) => const RegisterScreen(),
+        );
+    // forget password screen
+      case Routes.kForgetPasswordRoute: // return forget password screen
+        return MaterialPageRoute(
+          builder: (_) => const ResetPasswordScreen(),
+        );
+    // bottom nav bar screen
+      case Routes.kBottomNavBarRoute:
+        return MaterialPageRoute(
+          builder: (_) => const BottomNavBarScreen(),
+        );
+    // home screen
+      case Routes.kHomeRoute:
+        return MaterialPageRoute(
+          builder: (_) => const HomeScreen(),
+        );
+    // profile screen
+      case Routes.kProfileRoute:
+        return MaterialPageRoute(
+          builder: (_) => const ProfileScreen(),
+        );
+      case Routes.kEditProfileRoute:
+        return MaterialPageRoute(
+          builder: (BuildContext context) =>
+              BlocProvider.value(
+                value: AuthBloc.get(context),
+                child: const EditUserDataScreen(),
               ),
-            ],
-          ),
-        ],
-      ),
-    ],
-  );
+        );
+    // default route (error)
+      default:
+        return MaterialPageRoute(
+          builder: (_) =>
+              Scaffold(
+                body: Center(
+                  child: Text(
+                    'No route defined for ${settings.name}',
+                  ),
+                ),
+              ),
+        );
+    }
+  }
 }

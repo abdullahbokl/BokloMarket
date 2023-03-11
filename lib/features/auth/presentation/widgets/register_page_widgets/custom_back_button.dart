@@ -1,7 +1,6 @@
 import 'package:boklo_mart/core/common/widgets/custom_icon_button_widget.dart';
 import 'package:boklo_mart/core/utils/app_dimensions.dart';
 import 'package:boklo_mart/core/utils/app_colors.dart';
-import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
 
 class CustomBackButton extends StatelessWidget {
@@ -16,10 +15,9 @@ class CustomBackButton extends StatelessWidget {
         gradient: AppColors.secondaryGradient(),
         shape: BoxShape.circle,
       ),
-      child:
-      CustomIconButtonWidget(
+      child: CustomIconButtonWidget(
         icon: const Icon(Icons.keyboard_backspace_sharp, color: Colors.white),
-        onTap: () => GoRouter.of(context).pop(),
+        onTap: () => Navigator.of(context).pop(),
         size: AppDimensions.iconSize50,
       ),
     );

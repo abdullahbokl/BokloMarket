@@ -1,4 +1,4 @@
-import 'package:boklo_mart/features/auth/presentation/views/sign_in_page.dart';
+import 'package:boklo_mart/features/auth/presentation/views/sign_in_screen.dart';
 import 'package:boklo_mart/features/on_boarding/presentation/widgets/custom_page_view_builder.dart';
 import 'package:boklo_mart/features/on_boarding/presentation/widgets/on_boarding_buttons.dart';
 import 'package:boklo_mart/features/on_boarding/presentation/widgets/page_indicator.dart';
@@ -13,25 +13,29 @@ class OnBoardingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => OnBoardingBloc(),
+      child: Scaffold(
+        body: Container(
+          color: AppColors.primaryColor2,
+          child: SafeArea(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: const [
 
-    return Scaffold(
-      body: Container(
-        color: AppColors.primaryColor2,
-        child: SafeArea(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: const [
-              /// page view builder
-              CustomPageViewBuilder(),
-              Spacer(),
-              /// page indicator
-              PageIndicator(),
-              Spacer(),
+                /// page view builder
+                CustomPageViewBuilder(),
+                Spacer(),
 
-              /// on boarding buttons
-              OnBoardingButtons(),
-            ],
+                /// page indicator
+                PageIndicator(),
+                Spacer(),
+
+                /// on boarding buttons
+                OnBoardingButtons(),
+              ],
+            ),
           ),
         ),
       ),

@@ -26,4 +26,27 @@ class ProfileCubit extends Cubit<ProfileState> {
   // instances
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final AuthFirestoreServices _authFirestoreServices = AuthFirestoreServices();
+
+  void showUserData() {
+    nameController.text = _auth.currentUser!.displayName!;
+    emailController.text = _auth.currentUser!.email!;
+    passwordController.text = '********';
+  }
+
+  // save user data to firebase
+  void saveUserData() {
+    _auth.currentUser!.updateDisplayName(nameController.text);
+    _auth.currentUser!.updateEmail(emailController.text);
+    _auth.currentUser!.updatePassword(passwordController.text);
+    _auth.currentUser!.reload();
+    _authFirestoreServices.updateUser(
+      UserModel(
+        id: _auth.currentUser!.uid,
+        /// todo : edit image
+        image: '',
+        name: nameController.text,
+        email: emailController.text,
+      ),
+    );
+  }
 }
