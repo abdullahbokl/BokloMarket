@@ -12,5 +12,4 @@ class SignInUsingFacebook extends SignInEvent {}
 ///  Sign In With Facebook
 class SignInUsingGoogle extends SignInEvent {}
 
-/// resend email verification
-class ResendEmailVerification extends SignInEvent {}
+

@@ -25,9 +25,6 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
 
     ///   Sign In With Facebook
     on<SignInUsingFacebook>(_signInWithFacebook);
-
-    /// resend email verification
-    on<ResendEmailVerification>(_resendEmailVerification);
   }
 
   /// repositories
@@ -68,17 +65,6 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     }
   }
 
-  /// resend email verification
-  Future<void> _resendEmailVerification(
-      ResendEmailVerification event, Emitter<SignInState> emit) async {
-    emit(SignInLoading());
-    try {
-      await firebaseAuth.currentUser?.sendEmailVerification();
-      emit(VerificationEmailSent());
-    } catch (e) {
-      emit(SignInFailure(message: e.toString()));
-    }
-  }
 
   /// login using google
   Future<void> _signInWithGoogle(

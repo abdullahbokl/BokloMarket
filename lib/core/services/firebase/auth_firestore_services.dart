@@ -53,18 +53,6 @@ class AuthFirestoreServices {
     }
   }
 
-  /// get all users
-  Future<List<UserModel>> getUsers() async {
-    try {
-      final userDocs = await _firestore.collection('users').get();
-      return userDocs.docs
-          .map((doc) => UserModel.fromJson(doc.data()))
-          .toList();
-    } catch (e) {
-      throw Exception(e.toString());
-    }
-  }
-
   /// get user by token id
   static Future<String> getUserTokenId() async {
     try {

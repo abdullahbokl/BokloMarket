@@ -11,4 +11,5 @@ class Routes {
   static const String kCartRoute = '/cartRoute';
   static const String kProfileRoute = '/profileRoute';
   static const String kEditProfileRoute = '/editProfileRoute';
+  static const String kEditNameRoute = '/editNameRoute';
 }

@@ -14,5 +14,3 @@ class SignInFailure extends SignInState {
 
   SignInFailure({required this.message});
 }
-
-class VerificationEmailSent extends SignInState {}

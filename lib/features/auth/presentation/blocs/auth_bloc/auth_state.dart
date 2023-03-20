@@ -10,10 +10,10 @@ class AuthLoading extends AuthState {}
 
 class AuthSuccess extends AuthState {}
 
-class AuthFailure extends AuthState {
+class AuthFailed extends AuthState {
   final String message;
 
-  AuthFailure({required this.message});
+  AuthFailed({required this.message});
 }
 
 /// sign out
@@ -24,3 +24,7 @@ class SignOutFailure extends AuthState {
 
   SignOutFailure({required this.message});
 }
+
+
+/// resend email verification
+class VerificationEmailSent extends AuthState {}

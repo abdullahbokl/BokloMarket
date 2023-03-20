@@ -1,6 +1,7 @@
-import 'package:boklo_mart/config/routes/app_router.dart';
 import 'package:boklo_mart/features/auth/presentation/cubits/show_hide_password_cubit/show_hide_password_cubit.dart';
+import 'package:boklo_mart/features/auth/presentation/blocs/auth_bloc/auth_bloc.dart';
 import 'package:boklo_mart/core/utils/app_dimensions.dart';
+import 'package:boklo_mart/config/routes/app_router.dart';
 import 'package:boklo_mart/config/routes/redirects.dart';
 import 'package:boklo_mart/config/theme/app_theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,6 +18,10 @@ class BokloMarket extends StatelessWidget {
 
     return MultiBlocProvider(
       providers: [
+        /// auth bloc
+        BlocProvider<AuthBloc>(
+            create: (context) => AuthBloc()),
+
         /// show hide password cubit
         BlocProvider<ShowHidePasswordCubit>(
             create: (context) => ShowHidePasswordCubit()),
@@ -30,5 +35,4 @@ class BokloMarket extends StatelessWidget {
       ),
     );
   }
-
 }

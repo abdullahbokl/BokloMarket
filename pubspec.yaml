@@ -48,6 +48,8 @@ dependencies:
   hive_flutter:
   card_swiper: ^2.0.4
   shimmer: ^2.0.0
+  image_picker: ^0.8.7
+  firebase_storage: ^11.0.16
 
 
 

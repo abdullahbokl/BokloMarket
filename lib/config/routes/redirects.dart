@@ -14,6 +14,7 @@ class Redirects {
         true) {
       return const OnBoardingScreen();
     } else {
+      /// redirect to bottom nav bar screen if user is already logged in
       if (FirebaseAuth.instance.currentUser == null) {
         return const SignInScreen();
       } else {

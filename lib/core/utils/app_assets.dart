@@ -1,12 +1,11 @@
 class AppImages {
   static const imgPath = 'assets/images';
-  static const onBoardingPath = '/on_boarding';
+  static const onBoardingPath = 'on_boarding';
 
   /// on boarding
   static const String onBoarding1 = '$imgPath$onBoardingPath/on_boarding1.png';
   static const String onBoarding2 = '$imgPath$onBoardingPath/on_boarding2.png';
   static const String onBoarding3 = '$imgPath$onBoardingPath/on_boarding3.png';
-
 
   static const String item2 = '$imgPath/item2.png';
   static const String item5 = '$imgPath/item5.png';
@@ -23,4 +22,8 @@ class AppImages {
   static const String iconMensShoe = '$imgPath/Icon_Mens_Shoe.png';
   static const String iconUser = '$imgPath/Icon_User.png';
   static const String image = '$imgPath/Image.png';
+
+  /// network images
+  static const String userDefaultNetworkAvatarImage =
+      'https://firebasestorage.googleapis.com/v0/b/boklo-mart.appspot.com/o/user.png?alt=media&token=0eb1ca78-1816-4ec9-9a4a-f57a59225060';
 }

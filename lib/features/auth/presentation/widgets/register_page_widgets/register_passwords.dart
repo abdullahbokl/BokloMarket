@@ -4,8 +4,8 @@ import 'package:boklo_mart/features/auth/presentation/widgets/password_text_fiel
 import 'package:boklo_mart/core/utils/data_validation.dart';
 import 'package:boklo_mart/core/utils/app_dimensions.dart';
 import 'package:boklo_mart/core/utils/app_strings.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter/material.dart';
 
 class RegisterPasswords extends StatelessWidget {
   const RegisterPasswords({
@@ -14,9 +14,9 @@ class RegisterPasswords extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ShowHidePasswordCubit showHidePasswordCubit =
+    final ShowHidePasswordCubit showHidePasswordCubit =
         ShowHidePasswordCubit.get(context);
-    RegisterBloc registerBloc = RegisterBloc.get(context);
+    final RegisterBloc registerBloc = RegisterBloc.get(context);
 
     return BlocBuilder<ShowHidePasswordCubit, ShowHidePasswordState>(
       builder: (context, state) {

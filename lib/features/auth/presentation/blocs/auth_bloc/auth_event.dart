@@ -15,3 +15,10 @@ class AddUserToFirestore extends AuthEvent {
 
 /// fetch user from firestore
 class FetchUserFromFirestore extends AuthEvent {}
+
+/// resend email verification
+class ResendEmailVerification extends AuthEvent {
+  final String? email;
+
+  ResendEmailVerification({this.email});
+}

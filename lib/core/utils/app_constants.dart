@@ -1,11 +1,9 @@
-
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:boklo_mart/core/common/widgets/custom_text_widget.dart';
 import 'package:boklo_mart/core/utils/app_dimensions.dart';
 import 'package:flutter/material.dart';
 
 class AppConstants {
-
   /// Show snack bar
   static showSnackBar({
     required BuildContext context,
@@ -19,7 +17,6 @@ class AppConstants {
       ),
     );
   }
-
 
   /// Show dialog
   static AwesomeDialog showAwesomeDialog({

@@ -21,6 +21,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     /// fetch user from firebase
     on<FetchUserFromFirestore>(_fetchUser);
+
+    /// resend email verification
+    on<ResendEmailVerification>(_resendEmailVerification);
   }
 
   /// variables
@@ -36,6 +39,49 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final AuthFirestoreServices _authFirestoreServices = AuthFirestoreServices();
 
+  /// resend email verification
+  Future<void> _resendEmailVerification(
+      ResendEmailVerification event, Emitter<AuthState> emit) async {
+    emit(AuthLoading());
+    try {
+      if (event.email != null) {
+        // check if email is not taken
+        if (await _checkIfEmailInUse(event.email!)) {
+          emit(AuthFailed(message: 'Email is already in use'));
+          return;
+        } else {
+          await _auth.currentUser?.verifyBeforeUpdateEmail(event.email!);
+          return;
+        }
+      } else {
+        await _auth.currentUser?.sendEmailVerification();
+      }
+    } catch (e) {
+      emit(AuthFailed(message: e.toString()));
+    }
+  }
+
+  // check if email is not taken
+  // Returns true if email address is in use.
+  Future<bool> _checkIfEmailInUse(String emailAddress) async {
+    try {
+      // Fetch sign-in methods for the email address
+      final list =
+          await FirebaseAuth.instance.fetchSignInMethodsForEmail(emailAddress);
+
+      // In case list is not empty
+      if (list.isNotEmpty) {
+        // Return true because there is an existing user using the email address
+        return true;
+      } else {
+        // Return false because email address is not in use
+        return false;
+      }
+    } catch (error) {
+      return true;
+    }
+  }
+
   /// fetch user from firebase
   _fetchUser(FetchUserFromFirestore event, Emitter<AuthState> emit) async {
     emit(AuthLoading());
@@ -45,7 +91,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       user = await _authFirestoreServices.getUser(userID);
       emit(AuthSuccess());
     } catch (e) {
-      emit(AuthFailure(message: e.toString()));
+      emit(AuthFailed(message: e.toString()));
     }
   }
 

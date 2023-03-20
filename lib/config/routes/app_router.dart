@@ -2,7 +2,6 @@ import 'package:boklo_mart/features/bottom_navigation_bar/presentation/views/bot
 import 'package:boklo_mart/features/on_boarding/presentation/views/on_boarding_screen.dart';
 import 'package:boklo_mart/features/auth/presentation/views/reset_password_screen.dart';
 import 'package:boklo_mart/features/auth/presentation/blocs/auth_bloc/auth_bloc.dart';
-import 'package:boklo_mart/features/profile/presentation/views/edit_user_data.dart';
 import 'package:boklo_mart/features/profile/presentation/views/profile_screen.dart';
 import 'package:boklo_mart/features/auth/presentation/views/register_screen.dart';
 import 'package:boklo_mart/features/auth/presentation/views/sign_in_screen.dart';
@@ -54,7 +53,7 @@ class AppRouter {
           builder: (BuildContext context) =>
               BlocProvider.value(
                 value: AuthBloc.get(context),
-                child: const EditUserDataScreen(),
+                // child: const EditEmailScreen(),
               ),
         );
     // default route (error)

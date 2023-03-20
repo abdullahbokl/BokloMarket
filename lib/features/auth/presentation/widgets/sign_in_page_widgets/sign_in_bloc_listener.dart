@@ -1,6 +1,6 @@
 import 'package:boklo_mart/features/auth/presentation/blocs/sign_in_bloc/sign_in_bloc.dart';
+import 'package:boklo_mart/features/auth/presentation/blocs/auth_bloc/auth_bloc.dart';
 import 'package:boklo_mart/core/utils/app_constants.dart';
-import 'package:boklo_mart/core/utils/app_strings.dart';
 import 'package:boklo_mart/config/routes/routes.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
