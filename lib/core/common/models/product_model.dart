@@ -7,13 +7,12 @@ class ProductModel {
   List<String> categories = [];
   List<String>? images = [];
 
-
   ProductModel({
     required this.name,
     required this.coverImage,
     required this.description,
     required this.price,
-    required this.sale,
+    this.sale,
     required this.categories,
     this.images,
   });

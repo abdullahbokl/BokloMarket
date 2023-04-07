@@ -20,10 +20,12 @@ Future<void> main() async {
   /// sign out
   // await FirebaseAuth.instance.signOut();
 
-  runApp(const MaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: BokloMarket(),
-  ));
+  runApp(
+    const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: BokloMarket(),
+    ),
+  );
 }
 
 /// initialize hive

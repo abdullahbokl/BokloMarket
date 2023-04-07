@@ -13,22 +13,26 @@ class CustomButton extends StatelessWidget {
   final Color textColor;
   final BorderRadiusGeometry? radius;
   final IconData? suffixIcon;
+  final double? suffixIconSize;
   final Color? suffixIconColor;
+  final bool isCircular;
 
-  const CustomButton(
-      {Key? key,
-      required this.text,
-      required this.onTap,
-      this.color,
-      this.size,
-      this.height,
-      this.width,
-      this.gradient,
-      this.textColor = Colors.white,
-      this.radius,
-      this.suffixIcon,
-      this.suffixIconColor})
-      : super(key: key);
+  const CustomButton({
+    Key? key,
+    required this.text,
+    required this.onTap,
+    this.color,
+    this.size,
+    this.height,
+    this.width,
+    this.gradient,
+    this.textColor = Colors.white,
+    this.radius,
+    this.suffixIcon,
+    this.suffixIconColor,
+    this.suffixIconSize,
+    this.isCircular = false,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -44,8 +48,11 @@ class CustomButton extends StatelessWidget {
           vertical: AppDimensions.radius5,
         ),
         decoration: BoxDecoration(
+          shape: isCircular ? BoxShape.circle : BoxShape.rectangle,
           color: color ?? Colors.blue,
-          borderRadius: radius ?? BorderRadius.circular(AppDimensions.radius5),
+          borderRadius: !isCircular
+              ? radius ?? BorderRadius.circular(AppDimensions.radius5)
+              : null,
           gradient: gradient,
         ),
         child: Row(
@@ -63,7 +70,7 @@ class CustomButton extends StatelessWidget {
               Icon(
                 suffixIcon,
                 color: suffixIconColor,
-                size: size ?? AppDimensions.font16,
+                size: suffixIconSize ?? AppDimensions.font16,
               ),
           ],
         ),

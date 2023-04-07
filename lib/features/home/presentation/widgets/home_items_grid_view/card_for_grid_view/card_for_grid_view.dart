@@ -7,11 +7,16 @@ import 'package:flutter/material.dart';
 import 'add_to_favourite_button.dart';
 
 class HomeGridViewCard extends StatelessWidget {
-  const HomeGridViewCard({Key? key, required this.product, required this.index})
-      : super(key: key);
+  const HomeGridViewCard({
+    Key? key,
+    required this.product,
+    required this.index,
+    required this.onTap,
+  }) : super(key: key);
 
   final ProductModel product;
   final int index;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +25,15 @@ class HomeGridViewCard extends StatelessWidget {
       decoration: _cardShadow(),
       child: Stack(
         children: [
-          Container(
-            decoration: HomeGridViewCardDecoration()
-                .decoration(index: index, context: context),
-            child: HomeGridViewCardBody(product: product),
+          GestureDetector(
+            onTap: onTap,
+            child: Container(
+              decoration: HomeGridViewCardDecoration()
+                  .decoration(index: index, context: context),
+              child: HomeGridViewCardBody(product: product),
+            ),
           ),
-          AddToFavouriteButton(index: index, product: product),
+          AddToCartButton(index: index, product: product),
         ],
       ),
     );

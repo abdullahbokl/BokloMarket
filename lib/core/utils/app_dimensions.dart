@@ -1,17 +1,16 @@
-
 class AppDimensions {
   static double height = 0;
   static double width = 0;
 
   /** custom heights **/
 
-  static final double itemCardRatio = (width / width160) / (height / height250) * 0.9;
+  static final double itemCardRatio =
+      (width / width160) / (height / height250) * 0.9;
 
   /** height and width */
 
   static final double height2 = height / 422.6;
   static final double width2 = width / 206.7;
-
 
   static final double height3 = height / 281.3;
   static final double width3 = width / 131.1;
@@ -69,6 +68,12 @@ class AppDimensions {
 
   static final double height65 = height / 13.0;
   static final double width65 = width / 6.2;
+
+  static final double height70 = height / 12.0;
+  static final double width70 = width / 5.8;
+
+  static final double height80 = height / 10.5;
+  static final double width80 = width / 5.1;
 
   static final double height100 = height / 8.4;
   static final double width100 = width / 3.6;
@@ -156,5 +161,4 @@ class AppDimensions {
   static final double iconSize40 = height / 21.7;
   static final double iconSize45 = height / 19.3;
   static final double iconSize50 = height / 17.3;
-
 }

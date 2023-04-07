@@ -3,6 +3,7 @@ import 'package:boklo_mart/features/bottom_navigation_bar/presentation/views/bot
 import 'package:boklo_mart/features/profile/presentation/cubits/profile_cubit/profile_cubit.dart';
 import 'package:boklo_mart/features/auth/presentation/blocs/auth_bloc/auth_bloc.dart';
 import 'package:boklo_mart/features/home/presentation/blocs/home_bloc/home_bloc.dart';
+import 'package:boklo_mart/features/details/cubit/details_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
@@ -28,6 +29,9 @@ class BottomNavBarScreen extends StatelessWidget {
             ..add(FetchProducts())
             ..add(SelectCategory(index: 0)),
         ),
+
+        /// details bloc
+        BlocProvider(create: (context) => DetailsCubit()),
 
         /// Profile bloc
         BlocProvider(create: (context) => ProfileCubit()),

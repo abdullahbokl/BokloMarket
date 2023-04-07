@@ -1,3 +1,7 @@
+import 'package:boklo_mart/features/details/presentation/widgets/custom_back_button.dart';
+import 'package:boklo_mart/features/details/presentation/widgets/bottom_curved_part.dart';
+import 'package:boklo_mart/features/details/presentation/widgets/upper_part.dart';
+import 'package:boklo_mart/core/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
@@ -6,43 +10,28 @@ class ProductDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Product Details'),
-      ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Container(
-            padding: EdgeInsets.all(16),
-            child: Text(
-              title,
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
+      body: Container(
+        height: double.maxFinite,
+        width: double.maxFinite,
+        decoration: BoxDecoration(
+          gradient: AppColors.secondaryGradient(),
+        ),
+        child: Stack(
+          children: const [
+            // back button
+            CustomBackButton(),
+            // upper part
+            Align(
+              alignment: Alignment.topCenter,
+              child: UpperPart(),
             ),
-          ),
-          Container(
-            padding: EdgeInsets.all(16),
-            child: Text(
-              description,
-              style: TextStyle(
-                fontSize: 18,
-              ),
+            // bottom curved part
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: BottomCurvedPart(),
             ),
-          ),
-          Container(
-            padding: EdgeInsets.all(16),
-            child: Text(
-              '\$${price.toStringAsFixed(2)}',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Colors.green,
-              ),
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

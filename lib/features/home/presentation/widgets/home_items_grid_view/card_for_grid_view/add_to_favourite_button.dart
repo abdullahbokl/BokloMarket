@@ -4,8 +4,8 @@ import 'package:boklo_mart/core/common/models/product_model.dart';
 import 'package:boklo_mart/core/utils/app_dimensions.dart';
 import 'package:flutter/material.dart';
 
-class AddToFavouriteButton extends StatelessWidget {
-  const AddToFavouriteButton(
+class AddToCartButton extends StatelessWidget {
+  const AddToCartButton(
       {Key? key, required this.index, required this.product})
       : super(key: key);
 
