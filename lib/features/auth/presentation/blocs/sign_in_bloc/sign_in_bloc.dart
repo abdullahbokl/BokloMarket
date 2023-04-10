@@ -1,3 +1,4 @@
+import 'package:boklo_mart/core/services/firestore/add_new_user_to_firestore/user_firestore_repository.dart';
 import 'package:boklo_mart/features/auth/domain/repositories/sign_in_repo/email_and_password_sign_in.dart';
 import 'package:boklo_mart/features/auth/domain/repositories/sign_in_repo/sign_in_repository.dart';
 import 'package:boklo_mart/features/auth/domain/repositories/sign_in_repo/facebook_sign_in.dart';
@@ -70,7 +71,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     }
   }
 
-  /// login using google
+  /// sign in using google
   Future<void> _signInWithGoogle(
       SignInUsingGoogle event, Emitter<SignInState> emit) async {
     emit(SignInLoading());
@@ -79,19 +80,26 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
 
       await signInRepository.signInWith(googleAuth);
 
+      /// add user to firestore
+      await UserFirestoreRepository().addNewUserToFirestore();
+
       emit(SignInSuccess());
     } catch (e) {
       emit(SignInFailure(message: e.toString()));
     }
   }
 
-  /// login using facebook
+  /// sign in using facebook
   Future<void> _signInWithFacebook(
       SignInUsingFacebook event, Emitter<SignInState> emit) async {
     emit(SignInLoading());
     try {
       FacebookAuthentication facebookAuth = FacebookAuthentication();
       await signInRepository.signInWith(facebookAuth);
+
+      /// add user to firestore
+
+      await UserFirestoreRepository().addNewUserToFirestore();
 
       emit(SignInSuccess());
     } catch (e) {

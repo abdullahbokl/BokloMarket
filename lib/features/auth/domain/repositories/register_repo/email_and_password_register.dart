@@ -13,7 +13,9 @@ class EmailAndPasswordRegistration implements RegisterMethod {
   Future<void> register() async {
     try {
       await _firebaseAuth.createUserWithEmailAndPassword(
-          email: email, password: password);
+        email: email,
+        password: password,
+      );
     } on FirebaseAuthException catch (e) {
       switch (e.code) {
         case 'user-not-found':

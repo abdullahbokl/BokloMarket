@@ -34,7 +34,6 @@ class CustomBackButton extends StatelessWidget {
         ),
       ),
       onTap: () {
-        print('object');
         Navigator.of(context).pop();
       },
     );
