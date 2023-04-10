@@ -1,13 +1,16 @@
+import 'package:boklo_mart/features/auth/domain/repositories/register_repo/register_method.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class RegisterRepository {
+class EmailAndPasswordRegistration implements RegisterMethod {
+  final String email;
+  final String password;
+
+  EmailAndPasswordRegistration({required this.email, required this.password});
+
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
-  /// sign up with email and password
-  Future<void> registerUsingEmailAndPassword({
-    required String email,
-    required String password,
-  }) async {
+  @override
+  Future<void> register() async {
     try {
       await _firebaseAuth.createUserWithEmailAndPassword(
           email: email, password: password);

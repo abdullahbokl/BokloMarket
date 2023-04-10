@@ -1,5 +1,5 @@
 import 'package:boklo_mart/core/services/firebase/auth_firestore_services.dart';
-import 'package:boklo_mart/features/auth/domain/repositories/auth_repository.dart';
+import 'package:boklo_mart/features/auth/domain/repositories/sign_out_repository.dart';
 import 'package:boklo_mart/core/common/models/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,7 +35,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   );
 
   /// repositories and instances
-  final AuthRepository authRepository = AuthRepository();
+  final SignOutRepository authRepository = SignOutRepository();
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final AuthFirestoreServices _authFirestoreServices = AuthFirestoreServices();
 

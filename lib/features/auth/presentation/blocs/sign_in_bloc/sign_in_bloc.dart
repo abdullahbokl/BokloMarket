@@ -1,4 +1,7 @@
-import 'package:boklo_mart/features/auth/domain/repositories/sign_in_repository.dart';
+import 'package:boklo_mart/features/auth/domain/repositories/sign_in_repo/email_and_password_sign_in.dart';
+import 'package:boklo_mart/features/auth/domain/repositories/sign_in_repo/sign_in_repository.dart';
+import 'package:boklo_mart/features/auth/domain/repositories/sign_in_repo/facebook_sign_in.dart';
+import 'package:boklo_mart/features/auth/domain/repositories/sign_in_repo/google_sign_in.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:boklo_mart/core/utils/app_strings.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -46,10 +49,12 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
       SignInUsingEmailAndPassword event, Emitter<SignInState> emit) async {
     emit(SignInLoading());
     try {
-      await signInRepository.signInWithEmailAndPassword(
+      EmailAndPasswordSignIn emailAndPasswordAuth = EmailAndPasswordSignIn(
         email: signInEmailController.text,
         password: signInPasswordController.text,
       );
+
+      await signInRepository.signInWith(emailAndPasswordAuth);
 
       if (firebaseAuth.currentUser?.emailVerified ?? false) {
         emit(SignInSuccess());
@@ -65,13 +70,15 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     }
   }
 
-
   /// login using google
   Future<void> _signInWithGoogle(
       SignInUsingGoogle event, Emitter<SignInState> emit) async {
     emit(SignInLoading());
     try {
-      await signInRepository.signInWithGoogle();
+      GoogleAuthentication googleAuth = GoogleAuthentication();
+
+      await signInRepository.signInWith(googleAuth);
+
       emit(SignInSuccess());
     } catch (e) {
       emit(SignInFailure(message: e.toString()));
@@ -83,7 +90,9 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
       SignInUsingFacebook event, Emitter<SignInState> emit) async {
     emit(SignInLoading());
     try {
-      await signInRepository.signInWithFacebook();
+      FacebookAuthentication facebookAuth = FacebookAuthentication();
+      await signInRepository.signInWith(facebookAuth);
+
       emit(SignInSuccess());
     } catch (e) {
       emit(SignInFailure(message: e.toString()));

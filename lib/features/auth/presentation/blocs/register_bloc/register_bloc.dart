@@ -1,4 +1,5 @@
-import 'package:boklo_mart/features/auth/domain/repositories/register_repository.dart';
+import 'package:boklo_mart/features/auth/domain/repositories/register_repo/email_and_password_register.dart';
+import 'package:boklo_mart/features/auth/domain/repositories/register_repo/register_repository.dart';
 import 'package:boklo_mart/core/services/firebase/auth_firestore_services.dart';
 import 'package:boklo_mart/core/common/models/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -43,10 +44,13 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
       RegisterNewUser event, Emitter<RegisterState> emit) async {
     emit(RegisterLoading());
     try {
-      await registerRepository.registerUsingEmailAndPassword(
+      EmailAndPasswordRegistration emailAndPasswordRegistration =
+          EmailAndPasswordRegistration(
         email: signUpEmailController.text,
         password: signUpPasswordController.text,
       );
+
+      await registerRepository.registerWith(emailAndPasswordRegistration);
 
       /// send email verification
       await _firebaseAuth.currentUser?.sendEmailVerification();

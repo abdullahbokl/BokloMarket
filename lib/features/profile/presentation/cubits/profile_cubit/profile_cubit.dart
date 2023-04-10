@@ -35,29 +35,49 @@ class ProfileCubit extends Cubit<ProfileState> {
     emit(ProfileImageLoading());
     try {
       // pick image
-      final XFile? image = await picker.pickImage(source: ImageSource.gallery);
-      // get user instance
-      final user = _auth.currentUser;
-      final userModel = await _authFirestoreServices.getUser(user!.uid);
-      // check if image is null
-      if (image == null) {
-        emit(ProfileImageFailed("No image selected"));
-        return;
-      }
-      // convert image path to file and upload it to fire storage
-      File file = File(image.path);
-      final ref = storage.ref().child(_auth.currentUser!.uid);
-      await ref.putFile(file);
-      String url = await ref.getDownloadURL();
-      // update user model
-      userModel.image = url;
-      await _authFirestoreServices.updateUser(userModel);
-      await user.updatePhotoURL(url);
+      File? file = await _pickImage();
+      if (file == null) return;
+      // Upload the image to fire storage and get the url
+      String url = await _uploadImage(file);
+      await _updateUserImage(url);
       emit(ProfileImageSuccess());
     } catch (e) {
       emit(ProfileImageFailed(e.toString()));
     }
   }
+
+  Future<File?> _pickImage() async {
+    // pick image
+    final XFile? image = await picker.pickImage(source: ImageSource.gallery);
+    // check if image is null
+    if (image == null) {
+      emit(ProfileImageFailed("No image selected"));
+      return null;
+    }
+    // convert image path to file
+    File file = File(image.path);
+    return file;
+  }
+
+  Future<String> _uploadImage(File file) async {
+    final ref = storage.ref().child(_auth.currentUser!.uid);
+    await ref.putFile(file);
+    // get the image url
+    String url = await ref.getDownloadURL();
+    return url;
+  }
+
+  _updateUserImage(String url) async {
+    // get user instance
+    final user = _auth.currentUser;
+    final userModel = await _authFirestoreServices.getUser(user!.uid);
+    // update user model
+    userModel.image = url;
+    await _authFirestoreServices.updateUser(userModel);
+    // update user image in firebase auth
+    await user.updatePhotoURL(url);
+  }
+
 
 // updateName
   Future<void> updateName() async {
